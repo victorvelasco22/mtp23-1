@@ -55,7 +55,7 @@ if __name__ == "__main__":
             
             #Aqui seria leer el fichero de texto.
             #Suponemos que guardamos el contenido de fichero en la variable "text"
-            text = "Hello world"
+            text="Hello world"
             print(f'Contenido del fichero: {text}')
 
             #Convertimos el texto en bytes (codificamos con UTF-8)

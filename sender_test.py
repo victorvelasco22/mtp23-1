@@ -63,7 +63,7 @@ if __name__ == "__main__":
             # Pack temperature and humidity into a byte buffer (payload) using a protocol 
             # signature of 0x01 so that the receiver knows that the bytes we are sending 
             # are a temperature and a humidity (see "simple-receiver.py").
-            payload = struct.pack("<Bff", 0x01, test)
+            payload = struct.pack("<Bs", 0x01, test)
 
             # Send the payload to the address specified above.
             nrf.reset_packages_lost()

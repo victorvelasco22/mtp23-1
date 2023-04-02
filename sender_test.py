@@ -79,11 +79,11 @@ if __name__ == "__main__":
             print("sent OK!")
             
             #Esto es para estadísticas de los paquetes perdidos y retransmitidos
-            if nrf.get_packages_lost() == 0:
-                print(f"Success: lost={nrf.get_packages_lost()}, retries={nrf.get_retries()}")
-            else:
-                print(f"Error: lost={nrf.get_packages_lost()}, retries={nrf.get_retries()}")
-            fin = 1
+            #if nrf.get_packages_lost() == 0:
+            #    print(f"Success: lost={nrf.get_packages_lost()}, retries={nrf.get_retries()}")
+            #else:
+            #    print(f"Error: lost={nrf.get_packages_lost()}, retries={nrf.get_retries()}")
+            #fin = 1
     except:
         traceback.print_exc()
         nrf.power_down()

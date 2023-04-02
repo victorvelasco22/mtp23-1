@@ -52,18 +52,18 @@ if __name__ == "__main__":
     try:
         print(f'Send to {address}')
         count = 0
-        while True:
+            
+            #Aqui seria leer el fichero de texto.
+            #Suponemos que guardamos el contenido de fichero en la variable "text"
+            text = 'Hello world'
+            print(f'Contenido del fichero: {text}')
 
-            # Emulate that we read temperature and humidity from a sensor, for example
-            # a DHT22 sensor.  Add a little random variation so we can see that values
-            # sent/received fluctuate a bit.
-            test = 'Hello world'
-            print(f'This is a test {test}')
-
-            # Pack temperature and humidity into a byte buffer (payload) using a protocol 
-            # signature of 0x01 so that the receiver knows that the bytes we are sending 
-            # are a temperature and a humidity (see "simple-receiver.py").
-            payload = struct.pack("<Bp", 0x01, test)
+            #Convertimos el texto en bytes (codificamos con UTF-8)
+            text_bytes = bytes(text,'utf-8')
+           
+            #Empaquetamos en un buffer (payload) poniendo el primer byte a 00000001 (0x01) para que lo reconozca el receptor
+            #Esto se tendrá que cambiar con los numeros de secuencia, ACK, y demás flags que tenga la trama
+            payload = struct.pack("<Bp", 0x01, text_bytes)
 
             # Send the payload to the address specified above.
             nrf.reset_packages_lost()
@@ -75,14 +75,12 @@ if __name__ == "__main__":
                 # Wait 10 seconds before sending the next reading.
                 time.sleep(10)
                 continue
-   
+            print("sent OK!")
             if nrf.get_packages_lost() == 0:
                 print(f"Success: lost={nrf.get_packages_lost()}, retries={nrf.get_retries()}")
             else:
                 print(f"Error: lost={nrf.get_packages_lost()}, retries={nrf.get_retries()}")
-
-            # Wait 10 seconds before sending the next reading.
-            time.sleep(10)
+                
     except:
         traceback.print_exc()
         nrf.power_down()

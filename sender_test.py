@@ -77,6 +77,8 @@ if __name__ == "__main__":
                 time.sleep(10)
                 continue
             print("sent OK!")
+            
+            #Esto es para estadísticas de los paquetes perdidos y retransmitidos
             if nrf.get_packages_lost() == 0:
                 print(f"Success: lost={nrf.get_packages_lost()}, retries={nrf.get_retries()}")
             else:

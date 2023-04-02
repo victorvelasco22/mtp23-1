@@ -52,7 +52,7 @@ if __name__ == "__main__":
     try:
         print(f'Send to {address}')
         count = 0
-            
+        while True:    
             #Aqui seria leer el fichero de texto.
             #Suponemos que guardamos el contenido de fichero en la variable "text"
             text="Hello world"

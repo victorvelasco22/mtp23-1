@@ -52,7 +52,8 @@ if __name__ == "__main__":
     try:
         print(f'Send to {address}')
         count = 0
-        while True:    
+        fin = 0
+        while fin < 1:    
             #Aqui seria leer el fichero de texto.
             #Suponemos que guardamos el contenido de fichero en la variable "text"
             text="Hello world"
@@ -80,7 +81,7 @@ if __name__ == "__main__":
                 print(f"Success: lost={nrf.get_packages_lost()}, retries={nrf.get_retries()}")
             else:
                 print(f"Error: lost={nrf.get_packages_lost()}, retries={nrf.get_retries()}")
-                
+            fin = 1
     except:
         traceback.print_exc()
         nrf.power_down()

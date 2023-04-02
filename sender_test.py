@@ -76,7 +76,7 @@ if __name__ == "__main__":
                 time.sleep(10)
                 continue
             
-	          print("transmission ok")
+	    print("transmission ok")
             if nrf.get_packages_lost() == 0:
                 print(f"Success: lost={nrf.get_packages_lost()}, retries={nrf.get_retries()}")
             else:

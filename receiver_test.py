@@ -52,7 +52,19 @@ if __name__ == "__main__":
     
     # Display the content of NRF24L01 device registers.
     nrf.show_registers()
-
+    
+    text="Hello world"
+    print("Original: {text}")
+    text_bytes = bytes(text,'utf-8')
+    print("Bytes: {text_bytes}")
+    payload = struct.pack("<Bp", 0x01, text_bytes)
+    print("Payload packed: {payload}")
+    print("----TRANSMISSION----")
+    payload_unpack = struct.unpack("<Bp", payload)
+    print("Unpacked payload: {payload_unpack}")
+    text_decoded = bytes.decode(payload_unpack,'utf-8')
+    print("Text decoded: {text_decoded}")
+    
     # Enter a loop receiving data on the address specified.
     try:
         print(f'Receive from {address}')

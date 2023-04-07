@@ -95,7 +95,7 @@ if __name__ == "__main__":
                 #Decodificar bytes con utf-8
                 #Gestionar las flags de la trama
                 if payload[0] == 0x01:
-                    text_bytes = struct.unpack("<Bp", payload)
+                    text_bytes = struct.unpack("<B11s", payload)
                     text = bytes.decode(text_bytes, 'utf-8')
                     print(f'Received data: {text}')
                 

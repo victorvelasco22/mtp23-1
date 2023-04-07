@@ -54,6 +54,7 @@ if __name__ == "__main__":
         count = 0
         fin = 0
         while fin < 1:    
+            
             #Aqui seria leer el fichero de texto.
             #Suponemos que guardamos el contenido de fichero en la variable "text"
             text="Hello world"

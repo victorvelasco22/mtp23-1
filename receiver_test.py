@@ -54,16 +54,16 @@ if __name__ == "__main__":
     nrf.show_registers()
     
     text="Hello world"
-    print("Original: {text}")
+    print(f"Original: {text}")
     text_bytes = bytes(text,'utf-8')
-    print("Bytes: {text_bytes}")
+    print(f"Bytes: {text_bytes}")
     payload = struct.pack("<Bp", 0x01, text_bytes)
-    print("Payload packed: {payload}")
+    print(f"Payload packed: {payload}")
     print("----TRANSMISSION----")
     payload_unpack = struct.unpack("<Bp", payload)
-    print("Unpacked payload: {payload_unpack}")
+    print(f"Unpacked payload: {payload_unpack}")
     text_decoded = bytes.decode(payload_unpack,'utf-8')
-    print("Text decoded: {text_decoded}")
+    print(f"Text decoded: {text_decoded}")
     
     # Enter a loop receiving data on the address specified.
     try:

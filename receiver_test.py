@@ -62,7 +62,7 @@ if __name__ == "__main__":
     print("----TRANSMISSION----")
     payload_unpack = struct.unpack("<B11s", payload)
     print(f"Unpacked payload: {payload_unpack}")
-    sin_flags=payload_unpack[2]
+    sin_flags=payload_unpack[1]
     text_decoded = bytes.decode(sin_flags,'utf-8')
     print(f"Text decoded: {text_decoded}")
     

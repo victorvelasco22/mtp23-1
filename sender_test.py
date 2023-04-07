@@ -59,6 +59,9 @@ if __name__ == "__main__":
             #Suponemos que guardamos el contenido de fichero en la variable "text"
             text="Hello world"
             print(f'Contenido del fichero: {text}')
+            
+            #Falta parsearlo para enviar tramas de una longitud máxima. No podemos enviar texto de longitud infinita.
+            #Falta incluir el EOF
 
             #Convertimos el texto en bytes (codificamos con UTF-8)
             text_bytes = bytes(text,'utf-8')
@@ -79,11 +82,8 @@ if __name__ == "__main__":
                 continue
             print("sent OK!")
             
-            #Esto es para estadísticas de los paquetes perdidos y retransmitidos
-            #if nrf.get_packages_lost() == 0:
-            #    print(f"Success: lost={nrf.get_packages_lost()}, retries={nrf.get_retries()}")
-            #else:
-            #    print(f"Error: lost={nrf.get_packages_lost()}, retries={nrf.get_retries()}")
+            #Seguir leyendo datos en bloques de lmax hasta el EOF.
+            #Cuando lea el EOF, que ponga fin = 1 para cerrar la TX.
             fin = 1
     except:
         traceback.print_exc()

@@ -68,7 +68,9 @@ if __name__ == "__main__":
            
             #Empaquetamos en un buffer (payload) poniendo el primer byte a 00000001 (0x01) para que lo reconozca el receptor
             #Esto se tendrá que cambiar con los numeros de secuencia, ACK, y demás flags que tenga la trama
-            payload = struct.pack("<Bp", 0x01, text_bytes)
+            #B para el primer byte
+            #11s pq 'Hello world' tiene 11 caracteres. Hay que adaptarlo al tamaño de la trama
+            payload = struct.pack("<B11s", 0x01, text_bytes)
 
             # Send the payload to the address specified above.
             nrf.reset_packages_lost()

@@ -58,7 +58,7 @@ if __name__ == "__main__":
     text_bytes = bytes(text,'utf-8')
     print(f"Bytes: {text_bytes}")
     length = len(text_bytes)
-    print(f"Number of bytes: {sys.getsizeof(tex_bytes)}")
+    print(f"Number of bytes: {sys.getsizeof(text_bytes)}")
     payload = struct.pack("<B11s", 0x01, text_bytes)
     print(f"Payload packed: {payload}")
     print("----TRANSMISSION----")

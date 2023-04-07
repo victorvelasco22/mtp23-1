@@ -39,7 +39,7 @@ if __name__ == "__main__":
         print("Not connected to Raspberry Pi ... goodbye.")
         sys.exit()
 
-    # Here we can set the data rate.
+    # Aqui podemos especificar el data rate.
     # Create NRF24 object.
     # PLEASE NOTE: PA level is set to MIN, because test sender/receivers are often close to each other, and then MIN works better.
     nrf = NRF24(pi, ce=25, payload_size=RF24_PAYLOAD.DYNAMIC, channel=100, data_rate=RF24_DATA_RATE.RATE_250KBPS, pa_level=RF24_PA.LOW)

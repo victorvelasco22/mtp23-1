@@ -71,18 +71,21 @@ if __name__ == "__main__":
                 pipe = nrf.data_pipe()
                 payload = nrf.get_payload()        
 
+                # Opcional
                 # Lee los bytes (i) del payload recibido y los concatena con : escribiendolos en hexadecimal con longitud mínima 2
                 hex = ':'.join(f'{i:02x}' for i in payload)
 
-                # Opcional
                 # Show message received as hex.
                 print(f"{now:%Y-%m-%d %H:%M:%S.%f}: pipe: {pipe}, len: {len(payload)}, bytes: {hex}, count: {count}")
 
                 #Si la trama es de longitud maxima (o lleva el EOF) y el primer byte es 0x01, la decodificamos
                 #Falta cambiar la condición. De momento pongo solo lo del primer byte
+                #Decodificar bytes con utf-8
+                #Gestionar las flags de la trama
                 if payload[0] == 0x01:
-                    values = struct.unpack("<Bp", payload)
-                    print(f'Protocol: {values[0]}, temperature: {values[1]}, humidity: {values[2]}')
+                    text_bytes = struct.unpack("<Bp", payload)
+                    text = bytes.decode(text_bytes, 'utf-8')
+                    print(f'Received data: {text}')
                 
             # Sleep 100 ms.
             time.sleep(0.1)

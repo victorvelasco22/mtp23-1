@@ -53,7 +53,6 @@ if __name__ == "__main__":
     # Display the content of NRF24L01 device registers.
     nrf.show_registers()
     
-    sin_flags=""    
     text="Hello world"
     print(f"Original: {text}")
     text_bytes = bytes(text,'utf-8')
@@ -63,8 +62,7 @@ if __name__ == "__main__":
     print("----TRANSMISSION----")
     payload_unpack = struct.unpack("<B11s", payload)
     print(f"Unpacked payload: {payload_unpack}")
-    for i in range(1, len(payload_unpack)):
-        sin_flags[i-1]=payload_unpack[i]
+    sin_flags=payload_unpack[2]
     text_decoded = bytes.decode(sin_flags,'utf-8')
     print(f"Text decoded: {text_decoded}")
     

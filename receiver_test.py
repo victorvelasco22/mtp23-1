@@ -53,6 +53,7 @@ if __name__ == "__main__":
     # Display the content of NRF24L01 device registers.
     nrf.show_registers()
     
+    sin_flags=""    
     text="Hello world"
     print(f"Original: {text}")
     text_bytes = bytes(text,'utf-8')

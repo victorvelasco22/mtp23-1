@@ -15,7 +15,7 @@ from nrf24 import *
 # from it on a different Raspberry Pi.
 #
 if __name__ == "__main__":    
-    print("Python NRF24 Simple Sender Example.")
+    print("Sender test")
     
     # Parse command line argument.
     parser = argparse.ArgumentParser(prog="simple-sender.py", description="Simple NRF24 Sender Example.")

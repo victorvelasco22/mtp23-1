@@ -63,6 +63,7 @@ if __name__ == "__main__":
     payload_unpack = struct.unpack("<B11s", payload)
     print(f"Unpacked payload: {payload_unpack}")
     sin_flags=payload_unpack[1]
+    print(f"Payload sin flags: {sin_flags}")
     text_decoded = bytes.decode(sin_flags,'utf-8')
     print(f"Text decoded: {text_decoded}")
     

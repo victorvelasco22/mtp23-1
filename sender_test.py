@@ -74,11 +74,10 @@ if __name__ == "__main__":
         #11s pq 'Hello world' tiene 11 caracteres. Hay que adaptarlo al tamaño de la trama
         # payload = struct.pack("<B11s", 0x01, text_bytes)
 
-        payload = text_bytes
             
         # Send the payload to the address specified above.
         nrf.reset_packages_lost()
-        nrf.send(payload)
+        nrf.send(text_bytes)
         try:
             nrf.wait_until_sent()
         except TimeoutError:

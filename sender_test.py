@@ -60,7 +60,7 @@ if __name__ == "__main__":
             # text="Hello world"
             # print(f'Contenido del fichero: {text}')
             
-            text = open("./home/rpi/holamundo.txt", "r")
+            text = open("/home/rpi/holamundo.txt", "r")
             print(f'Contenido del fichero: {text}')
             
             #Falta parsearlo para enviar tramas de una longitud máxima. No podemos enviar texto de longitud infinita.

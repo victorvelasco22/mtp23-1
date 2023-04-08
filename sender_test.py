@@ -52,47 +52,45 @@ if __name__ == "__main__":
     try:
         print(f'Send to {address}')
         count = 0
-        fin = 0
-        while fin < 1:    
+        
+        # Aqui seria leer el fichero de texto.
+        # Suponemos que guardamos el contenido de fichero en la variable "text"
+        # text="Hello world"
+        # print(f'Contenido del fichero: {text}')
             
-            #Aqui seria leer el fichero de texto.
-            #Suponemos que guardamos el contenido de fichero en la variable "text"
-            # text="Hello world"
-            # print(f'Contenido del fichero: {text}')
+        fichero = open("/home/rpi/helloworld.txt", "r")
+        text = fichero.read()
+        print(f'Contenido del fichero: {text}')
             
-            fichero = open("/home/rpi/helloworld.txt", "r")
-            text = fichero.read()
-            print(f'Contenido del fichero: {text}')
-            
-            #Falta parsearlo para enviar tramas de una longitud máxima. No podemos enviar texto de longitud infinita.
-            #Falta incluir el EOF
+        # Falta parsearlo para enviar tramas de una longitud máxima. No podemos enviar texto de longitud infinita.
+        # Falta incluir el EOF
 
-            #Convertimos el texto en bytes (codificamos con UTF-8)
-            text_bytes = bytes(text,'utf-8')
+        #Convertimos el texto en bytes (codificamos con UTF-8)
+        text_bytes = bytes(text,'utf-8')
            
-            #Empaquetamos en un buffer (payload) poniendo el primer byte a 00000001 (0x01) para que lo reconozca el receptor
-            #Esto se tendrá que cambiar con los numeros de secuencia, ACK, y demás flags que tenga la trama
-            #B para el primer byte
-            #11s pq 'Hello world' tiene 11 caracteres. Hay que adaptarlo al tamaño de la trama
-            # payload = struct.pack("<B11s", 0x01, text_bytes)
+        #Empaquetamos en un buffer (payload) poniendo el primer byte a 00000001 (0x01) para que lo reconozca el receptor
+        #Esto se tendrá que cambiar con los numeros de secuencia, ACK, y demás flags que tenga la trama
+        #B para el primer byte
+        #11s pq 'Hello world' tiene 11 caracteres. Hay que adaptarlo al tamaño de la trama
+        # payload = struct.pack("<B11s", 0x01, text_bytes)
 
-            payload = text_bytes
+        payload = text_bytes
             
-            # Send the payload to the address specified above.
-            nrf.reset_packages_lost()
-            nrf.send(payload)
-            try:
-                nrf.wait_until_sent()
-            except TimeoutError:
-                print('Timeout waiting for transmission to complete.')
-                # Wait 10 seconds before sending the next reading.
-                time.sleep(10)
-                continue
-            print("sent OK!")
+        # Send the payload to the address specified above.
+        nrf.reset_packages_lost()
+        nrf.send(payload)
+        try:
+            nrf.wait_until_sent()
+        except TimeoutError:
+            print('Timeout waiting for transmission to complete.')
+            # Wait 10 seconds before sending the next reading.
+            time.sleep(10)
+            continue
+        print("sent OK!")
             
-            #Seguir leyendo datos en bloques de lmax hasta el EOF.
-            #Cuando lea el EOF, que ponga fin = 1 para cerrar la TX.
-            fin = 1
+        #Seguir leyendo datos en bloques de lmax hasta el EOF.
+        #Cuando lea el EOF, que ponga fin = 1 para cerrar la TX.
+        
     except:
         traceback.print_exc()
         nrf.power_down()

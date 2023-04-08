@@ -85,7 +85,7 @@ if __name__ == "__main__":
             print('Timeout waiting for transmission to complete.')
             # Wait 10 seconds before sending the next reading.
             time.sleep(10)
-            continue
+  
         print("sent OK!")
         fichero.close()    
         #Seguir leyendo datos en bloques de lmax hasta el EOF.

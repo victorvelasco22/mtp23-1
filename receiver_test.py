@@ -53,36 +53,12 @@ if __name__ == "__main__":
     # Display the content of NRF24L01 device registers.
     nrf.show_registers()
     
-    #text="Hello world"
-    #print(f"Original: {text}")
-    #text_bytes = bytes(text,'utf-8')
-    #print(f"Bytes: {text_bytes}")
-    #length = len(text_bytes)
-    #print(f"Number of bytes: {sys.getsizeof(text_bytes)}")
-    #payload = struct.pack("<B11s", 0x01, text_bytes)
-    #print(f"Payload packed: {payload}")
-    #print("----TRANSMISSION----")
-    #payload_unpack = struct.unpack("<B11s", payload)
-    #print(f"Unpacked payload: {payload_unpack}")
-    #sin_flags=payload_unpack[1]
-    #print(f"Payload sin flags: {sin_flags}")
-    #text_decoded = bytes.decode(sin_flags,'utf-8')
-    #print(f"Text decoded: {text_decoded}")
-    
     # Enter a loop receiving data on the address specified.
     try:
         print(f'Receive from {address}')
         count = 0
         fichero_out = open("/home/rpi/output.txt","a")
-        fichero_in = open("/home/rpi/helloworld.txt", "r")
-        texto = fichero_in.read()
-        texto_bytes = bytes(texto,'utf-8')
-        print("---TX---")
-        pay = bytes.decode(texto_bytes,'utf-8')
-        fichero_out.write(pay)
-        fichero_in.close()
-        fichero_out.close()
-        print("OKKKKK")
+       
         # Ha de estar todo el rato escuchando
         while True:
             
@@ -94,7 +70,7 @@ if __name__ == "__main__":
                 
                 
                 # Read pipe and payload for message.
-                pipe = nrf.data_pipe()
+                # pipe = nrf.data_pipe()
                 payload = nrf.get_payload()        
 
                 # Opcional

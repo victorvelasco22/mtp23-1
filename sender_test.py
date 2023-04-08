@@ -58,8 +58,11 @@ if __name__ == "__main__":
         text = fichero.read()
         print(f'Contenido del fichero: {text}')
         print(f'Numero de bytes: {sys.getsizeof(text)}')
+      
         #Convertimos el texto en bytes (codificamos con UTF-8)
         text_bytes = bytes(text,'utf-8')
+        print(f'Contenido del fichero pasado a bytes: {text_bytes}')
+        print(f'Numero de bytes: {sys.getsizeof(text_bytes)}')
         
         # Falta parsearlo para enviar tramas de una longitud máxima. No podemos enviar texto de longitud infinita.
         # Falta incluir el EOF

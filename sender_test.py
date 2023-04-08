@@ -57,7 +57,7 @@ if __name__ == "__main__":
         fichero = open("/home/rpi/helloworld.txt", "r")
         text = fichero.read()
         print(f'Contenido del fichero: {text}')
-        
+        print(f'Numero de bytes: {sys.getsizeof(text)}')
         #Convertimos el texto en bytes (codificamos con UTF-8)
         text_bytes = bytes(text,'utf-8')
         

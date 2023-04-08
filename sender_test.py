@@ -53,23 +53,20 @@ if __name__ == "__main__":
         print(f'Send to {address}')
         count = 0
         
-        # Aqui seria leer el fichero de texto.
-        # Suponemos que guardamos el contenido de fichero en la variable "text"
-        # text="Hello world"
-        # print(f'Contenido del fichero: {text}')
-            
+        # Ruta fichero pen drive
         fichero = open("/home/rpi/helloworld.txt", "r")
         text = fichero.read()
         print(f'Contenido del fichero: {text}')
-            
-        # Falta parsearlo para enviar tramas de una longitud máxima. No podemos enviar texto de longitud infinita.
-        # Falta incluir el EOF
-
+        
         #Convertimos el texto en bytes (codificamos con UTF-8)
         text_bytes = bytes(text,'utf-8')
-           
+        
+        # Falta parsearlo para enviar tramas de una longitud máxima. No podemos enviar texto de longitud infinita.
+        # Falta incluir el EOF
+        # Lo hace automáticamente???
+                   
         #Empaquetamos en un buffer (payload) poniendo el primer byte a 00000001 (0x01) para que lo reconozca el receptor
-        #Esto se tendrá que cambiar con los numeros de secuencia, ACK, y demás flags que tenga la trama
+        #Esto se tendrá que cambiar con los numeros de secuencia, ACK, y demás flags que tenga la trama ---> Lo hace automaticamente??
         #B para el primer byte
         #11s pq 'Hello world' tiene 11 caracteres. Hay que adaptarlo al tamaño de la trama
         # payload = struct.pack("<B11s", 0x01, text_bytes)
@@ -87,8 +84,10 @@ if __name__ == "__main__":
   
         print("sent OK!")
         fichero.close()    
+        
         #Seguir leyendo datos en bloques de lmax hasta el EOF.
         #Cuando lea el EOF, que ponga fin = 1 para cerrar la TX.
+        #Lo hace solo??
         
     except:
         traceback.print_exc()

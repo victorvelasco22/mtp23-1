@@ -87,7 +87,7 @@ if __name__ == "__main__":
             time.sleep(10)
             continue
         print("sent OK!")
-            
+        fichero.close()    
         #Seguir leyendo datos en bloques de lmax hasta el EOF.
         #Cuando lea el EOF, que ponga fin = 1 para cerrar la TX.
         

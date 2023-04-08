@@ -74,7 +74,6 @@ if __name__ == "__main__":
         print(f'Receive from {address}')
         count = 0
         fichero_out = open("/home/rpi/output.txt","a")
-        # Ha de estar todo el rato escuchando
         fichero_in = open("/home/rpi/helloworld.txt", "r")
         texto = fichero_in.read()
         texto_bytes = bytes(texto,'utf-8')
@@ -84,6 +83,7 @@ if __name__ == "__main__":
         fichero_in.close()
         fichero_out.close()
         print("OKKKKK")
+        # Ha de estar todo el rato escuchando
         while True:
             
             # As long as data is ready for processing, process it.

@@ -58,44 +58,42 @@ if __name__ == "__main__":
         print(f'Receive from {address}')
         count = 0
         fichero = open("/home/rpi/output.txt","a")
-       
-        # Ha de estar todo el rato escuchando
-        while True:
+      
             
-            # As long as data is ready for processing, process it.
-            while nrf.data_ready():
-                # Count message and record time of reception.            
-                count += 1
-                #now = datetime.now()
+        # As long as data is ready for processing, process it.
+        while nrf.data_ready():
+            # Count message and record time of reception.            
+            count += 1
+            #now = datetime.now()
                 
                 
-                # Read pipe and payload for message.
-                # pipe = nrf.data_pipe()
-                #text es bytearray
-                text = nrf.get_payload()        
+            # Read pipe and payload for message.
+            # pipe = nrf.data_pipe()
+            #text es bytearray
+            text = nrf.get_payload()        
 
-                # Opcional
-                # Lee los bytes (i) del payload recibido y los concatena con : escribiendolos en hexadecimal con longitud mínima 2
-                #hex = ':'.join(f'{i:02x}' for i in payload)
+            # Opcional
+            # Lee los bytes (i) del payload recibido y los concatena con : escribiendolos en hexadecimal con longitud mínima 2
+            #hex = ':'.join(f'{i:02x}' for i in payload)
 
-                # Show message received as hex.
-                #print(f"{now:%Y-%m-%d %H:%M:%S.%f}: pipe: {pipe}, len: {len(payload)}, bytes: {hex}, count: {count}")
+            # Show message received as hex.
+            #print(f"{now:%Y-%m-%d %H:%M:%S.%f}: pipe: {pipe}, len: {len(payload)}, bytes: {hex}, count: {count}")
 
-                #Si la trama es de longitud maxima (o lleva el EOF) y el primer byte es 0x01, la decodificamos
-                #Falta cambiar la condición. De momento pongo solo lo del primer byte
-                #Decodificar bytes con utf-8
-                #Gestionar las flags de la trama
-                #if payload[0] == 0x01:
-                #    text_bytes = struct.unpack("<B11s", payload)
-                #    text = bytes.decode(text_bytes, 'utf-8')
-                #    print(f'Received data: {text}')
+            #Si la trama es de longitud maxima (o lleva el EOF) y el primer byte es 0x01, la decodificamos
+            #Falta cambiar la condición. De momento pongo solo lo del primer byte
+            #Decodificar bytes con utf-8
+            #Gestionar las flags de la trama
+            #if payload[0] == 0x01:
+            #    text_bytes = struct.unpack("<B11s", payload)
+            #    text = bytes.decode(text_bytes, 'utf-8')
+            #    print(f'Received data: {text}')
                 
-                # text = bytes.decode(payload, 'utf-8')
-                fichero.write(str(text,'utf-8'))
-                print(f"Se ha escrito: {str(text,'utf-8')}")
-            # Sleep 100 ms.
-            time.sleep(0.1)
-        fichero.close()
+            # text = bytes.decode(payload, 'utf-8')
+            fichero.write(str(text,'utf-8'))
+            print(f"Se ha escrito: {str(text,'utf-8')}")
+        # Sleep 100 ms.
+        time.sleep(0.1)
+    fichero.close()
     except:
         traceback.print_exc()
         nrf.power_down()

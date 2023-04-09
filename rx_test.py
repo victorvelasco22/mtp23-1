@@ -64,7 +64,7 @@ if __name__ == "__main__":
         while fin < 1:
 
             # As long as data is ready for processing, process it.
-            while nrf.data_ready():
+            while nrf.data_ready() and fin < 1:
                 # Count message and record time of reception.
 
                 count += 1

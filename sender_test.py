@@ -77,7 +77,7 @@ if __name__ == "__main__":
             
         # Send the payload to the address specified above.
         nrf.reset_packages_lost()
-        nrf.send(text_bytes)
+        nrf.send(text)
         try:
             nrf.wait_until_sent()
         except TimeoutError:

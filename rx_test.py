@@ -52,7 +52,8 @@ if __name__ == "__main__":
 
     # Display the content of NRF24L01 device registers.
     nrf.show_registers()
-
+    next_id = 1
+    nrf.ack_payload(RF24_RX_ADDR.P1, struct.pack('<I', next_id))
     # Enter a loop receiving data on the address specified.
     try:
         print(f'Receive from {address}')
@@ -61,10 +62,10 @@ if __name__ == "__main__":
         
         fin = 0
         # Ha de estar todo el rato escuchando
-        while fin < 1:
+        while True:
 
             # As long as data is ready for processing, process it.
-            while nrf.data_ready() and fin < 1:
+            while nrf.data_ready():
                 # Count message and record time of reception.
 
                 count += 1
@@ -97,7 +98,8 @@ if __name__ == "__main__":
                 fichero.write(text)
                 print(f"Se ha escrito: {text}")
                 print(f'Numero de bytes: {sys.getsizeof(text)}')
-                fin = 1
+                next_id += 1
+                nrf.ack_payload(RF24_RX_ADDR.P1, struct.pack('<I', next_id))
             # Sleep 100 ms.
             time.sleep(0.1)
         fichero.close()

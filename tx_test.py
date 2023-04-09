@@ -84,7 +84,46 @@ if __name__ == "__main__":
             print('Timeout waiting for transmission to complete.')
             # Wait 10 seconds before sending the next reading.
             time.sleep(10)
-  
+        if not timeout:
+                if nrf.get_packages_lost() == 0:    
+                    # Check if an acknowledgement package is available.
+                    if nrf.data_ready():
+                        # Get payload.
+                        payload = nrf.get_payload()
+        
+                        if len(payload) == 4:
+                            # If the payload is 4 bytes, we expect it to be an acknowledgement payload.
+                            (next_id, ) = struct.unpack('<I', payload)
+
+                        else:
+                            # Not 4 bytes long then we consider it an invalid payload.
+                            print("Invalid acknowledgement payload received.")
+                            next_id = -1
+                    else:
+                        print("No acknowledgement package received.")
+                        next_id = -1
+    
+                else:
+                    # The package sent was lost.
+                    print("Package lost. No acknowledgement.")
+                    next_id = -1
+            else:
+                print("Timeout. No acknowledgement.")
+                next_id = -1
+
+
+            if timeout:
+                print(f'Error: timeout while waiting for acknowledgement package. next_id={next_id}')
+            else:  
+                if nrf.get_packages_lost() == 0:
+                    # The package we sent was successfully received by the server.
+                    print(f"Success: lost={nrf.get_packages_lost()}, retries={nrf.get_retries()}, next_id={next_id}")
+                else:
+                    print(f"Error: lost={nrf.get_packages_lost()}, retries={nrf.get_retries()}, next_id={next_id}")
+            
+            # Wait 10 seconds before sending the next reading.
+            time.sleep(10)
+            
         print("sent OK!")
         fichero.close()    
         

@@ -1,5 +1,9 @@
-import argparse from datetime import datetime import struct
-import sys import time import traceback
+import argparse 
+from datetime import datetime 
+import struct
+import sys 
+import time 
+import traceback
 
 import pigpio
 from nrf24 import *
@@ -53,7 +57,7 @@ if __name__ == "__main__":
     try:
         print(f'Receive from {address}')
         count = 0
-        fichero = open("/home/hector/output.txt","a")
+        fichero = open("/home/rpi/output.txt","a")
         
         fin = 0
         # Ha de estar todo el rato escuchando

@@ -78,13 +78,17 @@ if __name__ == "__main__":
         # Send the payload to the address specified above.
         nrf.reset_packages_lost()
         nrf.send(text)
+        timeout = False
         try:
             nrf.wait_until_sent()
         except TimeoutError:
             print('Timeout waiting for transmission to complete.')
+            timeout = True
             # Wait 10 seconds before sending the next reading.
             time.sleep(10)
-        if not timeout:
+ 
+            
+         if not timeout:
                 if nrf.get_packages_lost() == 0:    
                     # Check if an acknowledgement package is available.
                     if nrf.data_ready():
@@ -110,8 +114,7 @@ if __name__ == "__main__":
             else:
                 print("Timeout. No acknowledgement.")
                 next_id = -1
-
-
+                
             if timeout:
                 print(f'Error: timeout while waiting for acknowledgement package. next_id={next_id}')
             else:  
@@ -120,10 +123,7 @@ if __name__ == "__main__":
                     print(f"Success: lost={nrf.get_packages_lost()}, retries={nrf.get_retries()}, next_id={next_id}")
                 else:
                     print(f"Error: lost={nrf.get_packages_lost()}, retries={nrf.get_retries()}, next_id={next_id}")
-            
-            # Wait 10 seconds before sending the next reading.
-            time.sleep(10)
-            
+                    
         print("sent OK!")
         fichero.close()    
         

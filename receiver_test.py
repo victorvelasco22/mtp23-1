@@ -93,7 +93,7 @@ if __name__ == "__main__":
             print(f"Se ha escrito: {str(text,'utf-8')}")
         # Sleep 100 ms.
         time.sleep(0.1)
-    fichero.close()
+        fichero.close()
     except:
         traceback.print_exc()
         nrf.power_down()

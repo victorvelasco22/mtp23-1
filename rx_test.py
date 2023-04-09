@@ -95,6 +95,7 @@ if __name__ == "__main__":
                 # text = bytes.decode(payload, 'utf-8')
                 fichero.write(str(text,'utf-8'))
                 print(f"Se ha escrito: {str(text,'utf-8')}")
+                print(f'Numero de bytes: {sys.getsizeof(str(text,'utf-8'))}')
                 fin = 1
             # Sleep 100 ms.
             time.sleep(0.1)

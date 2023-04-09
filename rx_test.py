@@ -75,7 +75,7 @@ if __name__ == "__main__":
                 # pipe = nrf.data_pipe()
                 #text es bytearray
                 payload = nrf.get_payload()
-
+                print(f'Numero de bytes: {sys.getsizeof(payload)}')
                 # Opcional
                 # Lee los bytes (i) del payload recibido y los concatena con : escribiendolos en hexadecimal con longitud mínima 2
                 #hex = ':'.join(f'{i:02x}' for i in payload)

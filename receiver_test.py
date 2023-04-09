@@ -71,6 +71,7 @@ if __name__ == "__main__":
                 
                 # Read pipe and payload for message.
                 # pipe = nrf.data_pipe()
+                #text es bytearray
                 text = nrf.get_payload()        
 
                 # Opcional
@@ -90,7 +91,7 @@ if __name__ == "__main__":
                 #    print(f'Received data: {text}')
                 
                 # text = bytes.decode(payload, 'utf-8')
-                fichero.write(text)
+                fichero.write(str(text))
                 print(f"Se ha escrito: {text}")
             # Sleep 100 ms.
             time.sleep(0.1)

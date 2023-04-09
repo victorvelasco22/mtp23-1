@@ -89,7 +89,7 @@ if __name__ == "__main__":
 
                 # text = bytes.decode(payload, 'utf-8')
                 fichero.write(str(text,'utf-8'))
-                print(f"Se ha escrito: {text}")
+                print(f"Se ha escrito: {str(text,'utf-8')}")
             # Sleep 100 ms.
             time.sleep(0.1)
         fichero.close()

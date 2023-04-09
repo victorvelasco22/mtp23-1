@@ -54,9 +54,10 @@ if __name__ == "__main__":
         print(f'Receive from {address}')
         count = 0
         fichero = open("/home/hector/output.txt","a")
-
+        
+        fin = 0
         # Ha de estar todo el rato escuchando
-        while True:
+        while fin < 1:
 
             # As long as data is ready for processing, process it.
             while nrf.data_ready():
@@ -90,6 +91,7 @@ if __name__ == "__main__":
                 # text = bytes.decode(payload, 'utf-8')
                 fichero.write(str(text,'utf-8'))
                 print(f"Se ha escrito: {str(text,'utf-8')}")
+                fin = 1
             # Sleep 100 ms.
             time.sleep(0.1)
         fichero.close()

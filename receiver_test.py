@@ -71,7 +71,7 @@ if __name__ == "__main__":
                 
                 # Read pipe and payload for message.
                 # pipe = nrf.data_pipe()
-                payload = nrf.get_payload()        
+                text = nrf.get_payload()        
 
                 # Opcional
                 # Lee los bytes (i) del payload recibido y los concatena con : escribiendolos en hexadecimal con longitud mínima 2
@@ -89,7 +89,7 @@ if __name__ == "__main__":
                 #    text = bytes.decode(text_bytes, 'utf-8')
                 #    print(f'Received data: {text}')
                 
-                text = bytes.decode(payload, 'utf-8')
+                # text = bytes.decode(payload, 'utf-8')
                 fichero.write(text)
                 print(f"Se ha escrito: {text}")
             # Sleep 100 ms.

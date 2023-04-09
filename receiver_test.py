@@ -57,7 +57,7 @@ if __name__ == "__main__":
     try:
         print(f'Receive from {address}')
         count = 0
-        fichero_out = open("/home/rpi/output.txt","a")
+        fichero = open("/home/rpi/output.txt","a")
        
         # Ha de estar todo el rato escuchando
         while True:

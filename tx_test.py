@@ -9,6 +9,8 @@ import traceback
 import pigpio
 from nrf24 import *
 
+import functions.py
+
 #
 # A simple NRF24L sender that connects to a PIGPIO instance on a hostname and port, default "localhost" and 8888, and
 # starts sending data on the address specified.  Use the companion program "simple-receiver.py" to receive the data

@@ -24,7 +24,7 @@ dir=get_mount_points()
 
 
 #establim el directori del usb com a directori de treball
-os.chdir(dir)
+os.chdir(dir[1])
 
 #es localitza el fitxer .txt
 for file in glob("*.txt"):

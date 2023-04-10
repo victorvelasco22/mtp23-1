@@ -56,7 +56,7 @@ if __name__ == "__main__":
         count = 0
         
         # Ruta fichero pen drive
-        fichero = open("/home/rpi/helloworld.txt", "r")
+        fichero = open("/home/hector/helloworld.txt", "r")
         text = fichero.read()
         print(f'Contenido del fichero: {text}')
         print(f'Numero de bytes: {sys.getsizeof(text)}')
@@ -88,8 +88,8 @@ if __name__ == "__main__":
             timeout = True
             # Wait 10 seconds before sending the next reading.
             time.sleep(10)
-        #Tiempo para que el receptor conteste con un ACK (100ms)
-        time.sleep(0.1)
+        #Tiempo para que el receptor conteste con un ACK (3s)
+        time.sleep(3)
         if not timeout:
             if nrf.get_packages_lost() == 0:    
                 # Check if an acknowledgement package is available.

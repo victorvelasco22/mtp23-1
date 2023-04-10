@@ -88,8 +88,8 @@ if __name__ == "__main__":
             timeout = True
             # Wait 10 seconds before sending the next reading.
             time.sleep(10)
-        #Tiempo para que el receptor conteste con un ACK (3s)
-        time.sleep(3)
+        #Tiempo para que el receptor conteste con un ACK (100ms)
+        time.sleep(0.1)
         if not timeout:
             if nrf.get_packages_lost() == 0:    
                 # Check if an acknowledgement package is available.

@@ -20,11 +20,11 @@ def get_mount_points(devices=None):
     usb_info = (line for line in output if is_usb(line.split()[0]))
     return [(info.split()[0], info.split()[2]) for info in usb_info] #el primer valor es el Filesystem i el segon es on esta ubicat el directori del pendrive
 
-dir=get_mount_points()
+dir=get_mount_points()[0][1]
 
 
 #establim el directori del usb com a directori de treball
-os.chdir(dir[0])
+os.chdir(dir)
 
 #es localitza el fitxer .txt
 for file in glob("*.txt"):

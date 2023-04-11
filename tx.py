@@ -12,8 +12,8 @@ if not radio.begin():
 
 #radio setup
 radio.channel = 90
-radio.print_pretty_details()
 radio.setPayloadSize(struct.calcsize("<32s"))
+radio.print_pretty_details()
 
 packets_sent = 0
 

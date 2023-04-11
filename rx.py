@@ -5,8 +5,6 @@ EOF = b'\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF
 
 radio = RF24(22, 0)
 
-#EOF = '/0xFF'
-
 if not radio.begin():
     raise OSError("nRF24L01 hardware isn't responding")
 
@@ -31,7 +29,7 @@ try:
             if fragment == EOF:
                 eof = True
             else:
-                print(type(fragment))
+                print(fragment)
                 payload.append(fragment)
                 fichero.write(fragment)
                 received_packets += 1

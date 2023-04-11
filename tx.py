@@ -34,7 +34,7 @@ payload.append([])
 payload[num_fragments].append(text_bytes[j:j+len(text_bytes)%32]) 
 
 #put device in TX mode
-radio.stopListening()
+radio.listen = false
 
 try:
   for i in range(len(payload)):

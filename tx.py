@@ -56,7 +56,6 @@ try:
     packets_sent += 1
     print(f"Sending {packets_sent}...", ("ok" if ok else "failed"))
     print(message)
-    print(type(payload[i]))
   message = struct.pack("<32s",EOF)
   ok = radio.write(message)
   #message = struct.pack("<{remaining}s",payload[len(payload)-1])

@@ -17,7 +17,7 @@ packets_sent = 0
 
 fichero = open("/home/hector/helloworld.txt", "r")
 text = fichero.read()
-text_bytes = bytearray(text,'utf-8')
+text_bytes = bytes(text,'utf-8')
 
 #number of fragments with max payload (32 bytes)
 num_fragments = len(text_bytes) // 32

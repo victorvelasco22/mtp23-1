@@ -24,7 +24,7 @@ text = fichero.read()
 #text_bytes = text
 
 #fragment text in blocks of 32 bytes
-payload = []
+payload = list()
 for i in range(0,len(text), 32):
   payload[i] = text[i:i+31]
 

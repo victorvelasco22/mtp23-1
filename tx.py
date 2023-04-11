@@ -35,7 +35,7 @@ payload.append([])
 payload[num_fragments].append(text_bytes[j:j+remaining]) 
 
 #put device in TX mode
-radio.listen = false
+radio.listen = False
 
 try:
   for i in range(len(payload)):
@@ -56,7 +56,7 @@ try:
     print("Transmission complete")
   else:
     print("Transmission failed")
-  
+  radio.power = False
 except KeyboardInterrupt:
   print("powering down radio and exiting.")
   radio.power = False

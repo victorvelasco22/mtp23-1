@@ -9,7 +9,7 @@ if not radio.begin():
     raise OSError("nRF24L01 hardware isn't responding")
 
 #radio setup
-radio.setDataRate(RF24_250KBPS)
+rate = radio.setDataRate(2)
 address=12345
 radio.openReadingPipe(0,address)
 radio.channel = 90

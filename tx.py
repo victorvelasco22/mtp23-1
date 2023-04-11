@@ -11,7 +11,7 @@ if not radio.begin():
   raise OSError("nRF24L01 hardware isn't responding")
 
 #radio setup
-radio.setDataRate(2)
+#radio.setDataRate(2)
 address=12345
 radio.openWritingPipe(address)
 radio.channel = 90

@@ -21,12 +21,12 @@ received_packets = 0
 try:
     while not eof:
         if radio.available():
-            rx = radio.read()
-            packet = struct.unpack("<32s",rx)
-            if packet == EOF:
+            buffer = radio.read()
+            fragment = struct.unpack("<32s",buffer)
+            if fragment == EOF:
                 eof = True
             else:
-                payload.append(packet)
+                payload.append(fragment)
                 received_packets += 1
     print("Transmission ok")
     print(payload) 

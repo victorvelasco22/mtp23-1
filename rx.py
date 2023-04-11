@@ -29,8 +29,9 @@ try:
             if fragment == EOF:
                 eof = True
             else:
+                for i in fragment:
+                    fichero.write(fragment[i])
                 payload.append(fragment)
-                fichero.write(bytes(fragment))
                 received_packets += 1
     print(f"Transmission ok, total received packets: {received_packets}")
     print(payload) 

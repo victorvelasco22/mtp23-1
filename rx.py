@@ -11,7 +11,7 @@ if not radio.begin():
     raise OSError("nRF24L01 hardware isn't responding")
 
 #radio setup
-address="0xababababab"
+address=12345
 radio.openReadingPipe(4,address)
 radio.channel = 90
 radio.listen = True

@@ -13,6 +13,7 @@ if not radio.begin():
 #radio setup
 radio.channel = 90
 radio.setPayloadSize(struct.calcsize("<32s"))
+radio.setAutoAck(false)
 radio.print_pretty_details()
 
 packets_sent = 0
@@ -49,9 +50,9 @@ radio.listen = False
 try:
   for i in range(len(payload)):
     message = struct.pack("<32s",payload[i])
-    start = time.monotonic_ns()
+    #start = time.monotonic_ns()
     ok = radio.write(message)
-    end = time.monotonic_ns()
+    #end = time.monotonic_ns()
     packets_sent += 1
     print(f"Sending {packets_sent}...", ("ok" if ok else "failed"))
     print(message)

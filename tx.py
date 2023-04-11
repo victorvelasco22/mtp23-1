@@ -38,16 +38,16 @@ payload[num_fragments].append(text_bytes[j:j+remaining])
 radio.listen = false
 
 try:
-  for i in range(len(payload)-1):
+  for i in range(len(payload)):
     message = struct.pack("<32s",payload[i])
     ok = radio.write(message)
     packets_sent += 1
     print(f"Sending {packets_sent}...", ("ok" if ok else "failed"))
   
-  message = struct.pack("<{remaining}s",payload[len(payload)-1])
-  ok = radio.write(message)
-  packets_sent += 1
-  print(f"Sending {packets_sent}...", ("ok" if ok else "failed"))
+  #message = struct.pack("<{remaining}s",payload[len(payload)-1])
+  #ok = radio.write(message)
+  #packets_sent += 1
+  #print(f"Sending {packets_sent}...", ("ok" if ok else "failed"))
     
   message = struct.pack("<B",EOF)
   ok = radio.write(message)

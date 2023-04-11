@@ -4,7 +4,7 @@ from pyrf24 import RF24
 
 radio = RF24(22, 0)
 
-#EOF = '/0xFF'
+EOF = b'\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF' 
 
 # initialize the nRF24L01 on the spi bus
 if not radio.begin():
@@ -49,7 +49,9 @@ radio.listen = False
 try:
   for i in range(len(payload)):
     message = struct.pack("<32s",payload[i])
+    start = time.monotonic_ns()
     ok = radio.write(message)
+    end = time.monotonic_ns()
     packets_sent += 1
     print(f"Sending {packets_sent}...", ("ok" if ok else "failed"))
     print(message)

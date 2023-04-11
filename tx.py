@@ -26,7 +26,7 @@ text = fichero.read()
 #fragment text in blocks of 32 bytes
 payload = list()
 for i in range(0,len(text), 32):
-  payload.append(text[i:i+31])
+  payload.append(text[i:i+32])
 
 #number of fragments with max payload (32 bytes)
 #num_fragments = len(text_bytes) // 32

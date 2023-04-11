@@ -9,7 +9,7 @@ if not radio.begin():
     raise OSError("nRF24L01 hardware isn't responding")
 
 radio.channel = 90
-radio.listen = true
+radio.listen = True
 
 eof = False
 payload = bytearray()

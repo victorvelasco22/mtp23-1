@@ -34,6 +34,7 @@ remaining = len(text_bytes)%32
 payload.append([])
 payload[num_fragments].append(text_bytes[j:j+remaining]) 
 
+print(type(payload[0]))
 #put device in TX mode
 radio.listen = False
 

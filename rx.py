@@ -14,6 +14,8 @@ radio.channel = 90
 radio.print_pretty_details()
 radio.listen = True
 
+fichero = open("/home/rpi/output.txt", "wb")
+
 eof = False
 payload = []
 received_packets = 0
@@ -27,8 +29,9 @@ try:
                 eof = True
             else:
                 payload.append(fragment)
+                fichero.write(fragment)
                 received_packets += 1
-    print("Transmission ok")
+    print(f"Transmission ok, total received packets: {received_packets}")
     print(payload) 
     text = str(payload,'utf-8')
     print(text)

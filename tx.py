@@ -11,8 +11,8 @@ if not radio.begin():
   raise OSError("nRF24L01 hardware isn't responding")
 
 #radio setup
-address=12345
-radio.openWritingPipe(address)
+#address=12345
+#radio.openWritingPipe(address)
 radio.channel = 90
 radio.setPayloadSize(struct.calcsize("<32s"))
 radio.print_pretty_details()

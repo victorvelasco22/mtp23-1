@@ -55,7 +55,8 @@ try:
     packets_sent += 1
     print(f"Sending {packets_sent}...", ("ok" if ok else "failed"))
     print(message)
-  
+  message = struct.pack("<32s",EOF)
+  ok = radio.write(message)
   #message = struct.pack("<{remaining}s",payload[len(payload)-1])
   #ok = radio.write(message)
   #packets_sent += 1
@@ -64,10 +65,10 @@ try:
   #message = struct.pack("<B",EOF)
   #ok = radio.write(message)
   print("Transmission done")
-  #if ok:
-  #  print("Transmission complete")
-  #else:
-  #  print("Transmission failed")
+  if ok:
+    print("Transmission complete")
+  else:
+    print("Transmission failed")
   radio.power = False
 except KeyboardInterrupt:
   print("powering down radio and exiting.")

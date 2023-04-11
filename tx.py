@@ -65,7 +65,6 @@ try:
     
   #message = struct.pack("<B",EOF)
   #ok = radio.write(message)
-  print("Transmission done")
   if ok:
     print("Transmission complete")
   else:

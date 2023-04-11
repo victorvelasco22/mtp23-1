@@ -2,7 +2,7 @@ import struct
 import time
 from pyrf24 import RF24
 
-radio = RF24(22, 0)
+radio = RF24(22, 24)
 
 #EOF = '/0xFF'
 

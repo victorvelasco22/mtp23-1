@@ -17,7 +17,7 @@ packets_sent = 0
 
 fichero = open("/home/hector/helloworld.txt", "rb")
 text = fichero.read()
-text_bytes = bytes(text,'utf-8')
+#text_bytes = bytes(text,'utf-8')
 #text_bytes = text
 
 payload = []

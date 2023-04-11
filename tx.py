@@ -1,6 +1,6 @@
 import struct
 import time
-from pyrf24 import RF24, RF24Network, RF24NetworkHeader
+from pyrf24 import RF24
 
 radio = RF24(22, 0)
 

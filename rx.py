@@ -29,7 +29,7 @@ try:
             if fragment == EOF:
                 eof = True
             else:
-                for i in fragment:
+                for i in range(len(fragment)):
                     fichero.write(fragment[i])
                 payload.append(fragment)
                 received_packets += 1

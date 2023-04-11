@@ -36,7 +36,7 @@ try:
                 received_packets += 1
     print(f"Transmission ok, total received packets: {received_packets}")
     print(payload) 
-    
+    fichero.close()
     radio.power = False
     
 except KeyboardInterrupt:

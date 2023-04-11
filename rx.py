@@ -11,8 +11,8 @@ if not radio.begin():
     raise OSError("nRF24L01 hardware isn't responding")
 
 radio.channel = 90
-radio.print_pretty_details()
 radio.listen = True
+radio.print_pretty_details()
 
 fichero = open("/home/rpi/output.txt", "wb")
 

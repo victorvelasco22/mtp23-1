@@ -11,8 +11,8 @@ if not radio.begin():
     raise OSError("nRF24L01 hardware isn't responding")
 
 #radio setup
-address=b'\xAB\xAB\xAB\xAB\xAB'
-radio.openReadingPipe(address)
+address="AAAAA"
+radio.openReadingPipe(4,address)
 radio.channel = 90
 radio.listen = True
 radio.print_pretty_details()

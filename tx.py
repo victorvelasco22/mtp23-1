@@ -52,12 +52,11 @@ ok = False
 try:
   for i in range(len(payload)):
     message = struct.pack("<32s",payload[i])
-    #start = time.monotonic_ns()
     ok = radio.write(message)
-    #end = time.monotonic_ns()
     packets_sent += 1
     print(f"Sending {packets_sent}...", ("ok" if ok else "failed"))
     print(message)
+    print(type(payload[i]))
   message = struct.pack("<32s",EOF)
   ok = radio.write(message)
   #message = struct.pack("<{remaining}s",payload[len(payload)-1])

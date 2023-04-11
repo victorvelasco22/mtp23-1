@@ -31,6 +31,7 @@ try:
             if fragment == EOF:
                 eof = True
             else:
+                print(type(fragment))
                 payload.append(fragment)
                 fichero.write(fragment)
                 received_packets += 1

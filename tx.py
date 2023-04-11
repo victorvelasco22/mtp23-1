@@ -4,25 +4,29 @@ from pyrf24 import RF24
 
 radio = RF24(22, 0)
 
-EOF = '/0xFF'
+#EOF = '/0xFF'
 
 # initialize the nRF24L01 on the spi bus
 if not radio.begin():
   raise OSError("nRF24L01 hardware isn't responding")
 
+#radio setup
 radio.channel = 90
 radio.print_pretty_details()
+radio.payloadSize = struct.calcsize("<32s")
 
 packets_sent = 0
 
+#read the file
 fichero = open("/home/hector/helloworld.txt", "rb")
 text = fichero.read()
 #text_bytes = bytes(text,'utf-8')
 #text_bytes = text
 
+#fragment text in blocks of 32 bytes
 payload = []
-for i in range(0,len(text_bytes), 32):
-  payload[i] = text_bytes[i:i+31]
+for i in range(0,len(text), 32):
+  payload[i] = text[i:i+31]
 
 #number of fragments with max payload (32 bytes)
 #num_fragments = len(text_bytes) // 32

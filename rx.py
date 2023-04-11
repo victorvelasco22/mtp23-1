@@ -12,7 +12,7 @@ if not radio.begin():
 
 #radio setup
 address=12345
-radio.openReadingPipe(4,address)
+radio.openReadingPipe(0,address)
 radio.channel = 90
 radio.listen = True
 radio.print_pretty_details()

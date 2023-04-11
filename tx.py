@@ -45,6 +45,7 @@ for i in range(0,len(text), 32):
 
 #put device in TX mode
 radio.listen = False
+ok = False
 
 try:
   for i in range(len(payload)):
@@ -65,7 +66,7 @@ try:
   #message = struct.pack("<B",EOF)
   #ok = radio.write(message)
   print("Transmission done")
-  if ok == True:
+  if ok:
     print("Transmission complete")
   else:
     print("Transmission failed")

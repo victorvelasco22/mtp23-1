@@ -30,21 +30,28 @@ for i in range(num_fragments):
   payload[i].append(text_bytes[j:j+31])
   j += 32
 #we fill the list with the remaining bytes
+remaining = len(text_bytes)%32
 payload.append([])
-payload[num_fragments].append(text_bytes[j:j+len(text_bytes)%32]) 
+payload[num_fragments].append(text_bytes[j:j+remaining]) 
 
 #put device in TX mode
 radio.listen = false
 
 try:
-  for i in range(len(payload)):
+  for i in range(len(payload)-1):
     message = struct.pack("<32s",payload[i])
     ok = radio.write(message)
     packets_sent += 1
     print(f"Sending {packets_sent}...", ("ok" if ok else "failed"))
   
+  message = struct.pack("<{remaining}s",payload[len(payload)-1])
+  ok = radio.write(message)
+  packets_sent += 1
+  print(f"Sending {packets_sent}...", ("ok" if ok else "failed"))
+    
   message = struct.pack("<B",EOF)
   ok = radio.write(message)
+  
   if ok:
     print("Transmission complete")
   else:

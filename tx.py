@@ -21,7 +21,7 @@ radio.print_pretty_details()
 packets_sent = 0
 
 #read the file
-fichero = open("/home/hector/helloworld.txt", "rb")
+fichero = open("/home/rpi/helloworld.txt", "rb")
 text = fichero.read()
 #text_bytes = bytes(text,'utf-8')
 #text_bytes = text

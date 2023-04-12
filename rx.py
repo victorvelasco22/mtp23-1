@@ -35,7 +35,7 @@ try:
                 payload.append(fragment)
                 received_packets += 1
     print(f"Transmission ok, total received packets: {received_packets}")
-    print(payload) 
+    #print(payload) 
     fichero.close()
     radio.power = False
     

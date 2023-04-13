@@ -9,7 +9,7 @@ if not radio.begin():
     raise OSError("nRF24L01 hardware isn't responding")
 
 #radio setup
-#radio.setDataRate(2)
+#radio.setDataRate(2)-> This is to change the data rate to 250Kbps. Default is 1Mbps (1)
 address=12345
 radio.openReadingPipe(0,address)
 radio.channel = 90

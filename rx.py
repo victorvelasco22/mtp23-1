@@ -10,7 +10,7 @@ if not radio.begin():
 
 #radio setup
 #radio.setDataRate(2)-> This is to change the data rate to 250Kbps. Default is 1Mbps (1)
-radio.setPALevel(1,1)
+radio.setPALevel(2,1)
 address=12345
 radio.openReadingPipe(0,address)
 radio.channel = 90

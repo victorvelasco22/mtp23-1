@@ -13,7 +13,7 @@ if not radio.begin():
 #radio setup
 #radio.setDataRate(2)
 address=12345
-radio.setPALevel(1,1)
+radio.setPALevel(2,1)
 radio.openWritingPipe(address)
 radio.channel = 90
 radio.setPayloadSize(struct.calcsize("<32s"))

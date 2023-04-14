@@ -23,28 +23,11 @@ packets_sent = 0
 #read the file
 fichero = open("/home/rpi/helloworld.txt", "rb")
 text = fichero.read()
-#text_bytes = bytes(text,'utf-8')
-#text_bytes = text
 
 #fragment text in blocks of 32 bytes
 payload = list()
 for i in range(0,len(text), 32):
   payload.append(text[i:i+32])
-
-#number of fragments with max payload (32 bytes)
-#num_fragments = len(text_bytes) // 32
-
-#we create a payload list of 32 bytes
-#payload = []
-#j = 0
-#for i in range(num_fragments):
-#  payload.append([])
-#  payload[i].append(text_bytes[j:j+31])
-#  j += 32
-#we fill the list with the remaining bytes
-#remaining = len(text_bytes)%32
-#payload.append([])
-#payload[num_fragments].append(text_bytes[j:j+remaining]) 
 
 #put device in TX mode
 radio.listen = False
@@ -59,13 +42,7 @@ try:
     print(message)
   message = struct.pack("<32s",EOF)
   ok = radio.write(message)
-  #message = struct.pack("<{remaining}s",payload[len(payload)-1])
-  #ok = radio.write(message)
-  #packets_sent += 1
-  #print(f"Sending {packets_sent}...", ("ok" if ok else "failed"))
-    
-  #message = struct.pack("<B",EOF)
-  #ok = radio.write(message)
+  
   if ok:
     print("Transmission complete")
   else:

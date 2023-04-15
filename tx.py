@@ -39,7 +39,7 @@ try:
     message = struct.pack("<32s",payload[i])
     ok = radio.write(message)
     packets_sent += 1
-    print(f"Sending {packets_sent}...", ("ok" if ok else "failed"))
+    #print(f"Sending {packets_sent}...", ("ok" if ok else "failed"))
     print(message)
   message = struct.pack("<32s",EOF)
   ok = radio.write(message)

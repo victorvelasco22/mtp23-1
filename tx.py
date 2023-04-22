@@ -10,8 +10,7 @@ EOF = b'\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF
 if not radio.begin():
   raise OSError("nRF24L01 hardware isn't responding")
 
-#radio setup
-#radio.setDataRate(2)
+#RADIO SETUP
 address=12345
 radio.setPALevel(2,1)
 radio.openWritingPipe(address)
@@ -21,19 +20,23 @@ radio.print_pretty_details()
 
 packets_sent = 0
 
-#read the file
+#READ THE FILE (Joan)
+#TO DO: always listening and detect the file automatically
 fichero = open("/home/rpi/helloworld.txt", "rb")
 text = fichero.read()
 
-#fragment text in blocks of 32 bytes
+#COMPRESSION (Josep)
+
+#FRAGMENT THE COMPRESSED TEXT IN BLOCKS OF 32 BYTES
 payload = list()
 for i in range(0,len(text), 32):
   payload.append(text[i:i+32])
 
-#put device in TX mode
+#PUT DEVICE IN TX MODE
 radio.listen = False
 ok = False
 
+#START THE TRANSMISSION
 try:
   for i in range(len(payload)):
     message = struct.pack("<32s",payload[i])

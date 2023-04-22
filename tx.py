@@ -2,6 +2,31 @@ import struct
 import time
 from pyrf24 import RF24
 
+# FUNCTIONS
+
+#read the utf-16-le file
+def open_txt():
+  with open("/home/rpi/helloworld.txt", "rb") as f:
+        text = f.read().decode("utf-16-le", errors="strict")
+  return text
+
+#encoding of the text to utf-16-le for compression
+def encodes(text):
+  return text.encode(encoding='utf-16-le', errors='strict')
+
+#decode the text back to utf-16
+def decodes(text):
+  return text.decode(encoding='utf-16-le', errors='strict')
+
+#fragment text in blocks of 32 bytes
+def frament_the_text(text):
+  payload = list()
+  for i in range(0,len(text), 32):
+    payload.append(text[i:i+32])
+  return payload
+
+# MAIN
+
 radio = RF24(22, 0)
 
 #TO DO: migrate to functions.py
@@ -23,15 +48,15 @@ packets_sent = 0
 
 #READ THE FILE (Joan)
 #TO DO: always listening and detect the file automatically
-fichero = open("/home/rpi/helloworld.txt", "rb")
-text = fichero.read()
+original_text = open_txt()
+text_to_tx = encodes(original_text)
 
 #COMPRESSION (Josep)
+# preset = 9 -> max compression, but slowest
+text_compressed = lzma.compress(text_to_tx, preset=9)
 
 #FRAGMENT THE COMPRESSED TEXT IN BLOCKS OF 32 BYTES
-payload = list()
-for i in range(0,len(text), 32):
-  payload.append(text[i:i+32])
+payload = frament_the_text(text_compressed)
 
 #PUT DEVICE IN TX MODE
 radio.listen = False

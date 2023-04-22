@@ -2,6 +2,11 @@ import os
 from glob import glob
 from subprocess import check_output, CalledProcessError
 
+#TO DO: read pins
+
+#TO DO: compression
+
+#TO DO: decompression
 
 #funcions per a detectar el path fins el directori del pendrive
 def get_usb_devices():

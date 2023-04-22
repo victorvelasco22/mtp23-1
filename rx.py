@@ -1,6 +1,13 @@
 import struct
 from pyrf24 import RF24
+import bz2
 
+# FUNCTIONS
+#decode the text back to utf-16
+def decodes(text):
+  return text.decode(encoding='utf-16-le', errors='strict')
+
+# MAIN
 EOF = (b'\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF',)
 
 radio = RF24(22, 0)
@@ -31,12 +38,15 @@ try:
             if fragment == EOF:
                 eof = True
             else:
-                for i in range(len(fragment)):
-                    fichero.write(fragment[i])
+                #for i in range(len(fragment)):
+                #    fichero.write(fragment[i])
                 payload.append(fragment)
                 received_packets += 1
+    compressed_txt = ".".join(payload)
+    decompressed_txt = decodes(zlib.decompress(compressed_txt))
+    fichero.write(decompressed_txt.encode("utf-16-le", errors="strict")))
     print(f"Transmission ok, total received packets: {received_packets}")
-    #print(payload) 
+    #print(payload)
     fichero.close()
     radio.power = False
     

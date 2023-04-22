@@ -1,6 +1,7 @@
 import struct
 import time
 from pyrf24 import RF24
+import bz2
 
 # FUNCTIONS
 

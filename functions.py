@@ -2,6 +2,8 @@ import os
 from glob import glob
 from subprocess import check_output, CalledProcessError
 
+#
+
 #TO DO: read pins
 
 #TO DO: compression

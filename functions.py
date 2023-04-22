@@ -8,6 +8,7 @@ from subprocess import check_output, CalledProcessError
 
 #TO DO: decompression
 
+#TO DO: agrupar-ho en funcions
 #funcions per a detectar el path fins el directori del pendrive
 def get_usb_devices():
     sdb_devices = map(os.path.realpath, glob('/sys/block/sd*'))

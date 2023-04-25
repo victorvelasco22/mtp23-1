@@ -11,6 +11,7 @@ from subprocess import check_output, CalledProcessError
 #TO DO: decompression
 
 #TO DO: agrupar-ho en funcions
+
 #funcions per a detectar el path fins el directori del pendrive
 def get_usb_devices():
     sdb_devices = map(os.path.realpath, glob('/sys/block/sd*'))
@@ -26,22 +27,21 @@ def get_mount_points(devices=None):
     def is_usb(path):
         return any(dev in path for dev in devices)
     usb_info = (line for line in output if is_usb(line.split()[0]))
-    return [(info.split()[0], info.split()[2]) for info in usb_info] #el primer valor es el Filesystem i el segon es on esta ubicat el directori del pendrive
-
-dir=get_mount_points()[0][1]
+    return [(info.split()[0], info.split()[2]) for info in usb_info] #el primer valor es el Filesystem i el segon es on esta ubicat el directori del pendrive.
 
 
-#establim el directori del usb com a directori de treball
-os.chdir(dir)
+def read_from_pen():                #obtenció del path fins al pendrive i coversió de fitxer .txt a string, el output de la funció es "data" que es el .txt convertit a string.
+    dir=get_mount_points()[0][1]    #obtenció del directori de usb (dir).
+    os.chdir(dir)                   #establim el directori del usb(dir) com a directori de treball.
+    for file in glob("*.txt"):      #es localitza el fitxer .txt.
+        print(file)
+    with open(file, 'r') as file:   #es converteix el fitxer .txt a string.
+        data = file.read()
+    return data
 
-#es localitza el fitxer .txt
-for file in glob("*.txt"):
-    print(file)
 
-#es converteix el fitxer .txt a string
-with open(file, 'r') as file:
-    data = file.read()
-
-#es converteix string a fitxer .txt
-with open("Output.txt", "w") as text_file:
-    text_file.write(data)
+def write_on_pen(data):                         #obtenció del path fins al pendrive i escriptura en forma de .txt de la variable data que es una string en el pendrive.
+    dir=get_mount_points()[0][1]                #obtenció del directori de usb (dir).
+    os.chdir(dir)                               #establim el directori del usb(dir) com a directori de treball.
+    with open("Output.txt", "w") as text_file:  #es converteix string(data) a fitxer .txt(Output.txt).
+        text_file.write(data)

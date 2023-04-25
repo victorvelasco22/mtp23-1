@@ -1,16 +1,38 @@
 import os
 from glob import glob
 from subprocess import check_output, CalledProcessError
+import bz2
 
 #
 
+#decode the text back to utf-16
+def decodes(text):
+  return text.decode(encoding='utf-16-le', errors='strict')
+
+#read the utf-16-le file
+def open_txt():
+  with open("/home/rpi/helloworld.txt", "rb") as f:
+        text = f.read().decode("utf-16-le", errors="strict")
+  return text
+
+#encoding of the text to utf-16-le for compression
+def encodes(text):
+  return text.encode(encoding='utf-16-le', errors='strict')
+
+#fragment text in a list elements of 32 bytes
+def frament_the_text(text):
+  payload = list()
+  for i in range(0,len(text), 32):
+    payload.append(text[i:i+32])
+  return payload
+
+def compress(text_to_tx):
+    return bz2.compress(text_to_tx, compresslevel=9)
+
+def decompress(compressed_txt):
+    return bz2.decompress(compressed_txt)
+
 #TO DO: read pins
-
-#TO DO: compression
-
-#TO DO: decompression
-
-#TO DO: agrupar-ho en funcions
 
 #funcions per a detectar el path fins el directori del pendrive
 def get_usb_devices():

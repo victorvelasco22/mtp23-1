@@ -54,7 +54,7 @@ text_to_tx = encodes(original_text)
 
 #COMPRESSION (Josep)
 # preset = 9 -> max compression, but slowest
-text_compressed = lzma.compress(text_to_tx, preset=9)
+text_compressed = bz2.compress(text_to_tx, preset=9)
 
 #FRAGMENT THE COMPRESSED TEXT IN BLOCKS OF 32 BYTES
 payload = frament_the_text(text_compressed)

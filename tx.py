@@ -26,6 +26,10 @@ def frament_the_text(text):
     payload.append(text[i:i+32])
   return payload
 
+def compress(text_to_tx):
+  # preset = 9 -> max compression, but slowest
+  return bz2.compress(text_to_tx, compresslevel=9)
+  
 # MAIN
 
 radio = RF24(22, 0)
@@ -53,8 +57,7 @@ original_text = open_txt()
 text_to_tx = encodes(original_text)
 
 #COMPRESSION (Josep)
-# preset = 9 -> max compression, but slowest
-text_compressed = bz2.compress(text_to_tx, preset=9)
+text_compressed = compress(text_to_tx)
 
 #FRAGMENT THE COMPRESSED TEXT IN BLOCKS OF 32 BYTES
 payload = frament_the_text(text_compressed)

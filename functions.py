@@ -27,7 +27,8 @@ def frament_the_text(text):
   return payload
 
 def compress(text_to_tx):
-    return bz2.compress(text_to_tx, compresslevel=9)
+  # preset = 9 -> max compression, but slowest
+  return bz2.compress(text_to_tx, compresslevel=9)
 
 def decompress(compressed_txt):
     return bz2.decompress(compressed_txt)

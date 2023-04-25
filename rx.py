@@ -7,6 +7,10 @@ import bz2
 def decodes(text):
   return text.decode(encoding='utf-16-le', errors='strict')
 
+def decompress(compressed_txt):
+    return bz2.decompress(compressed_txt)
+
+  
 # MAIN
 EOF = (b'\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF',)
 
@@ -43,7 +47,7 @@ try:
                 payload.append(fragment)
                 received_packets += 1
     compressed_txt = ".".join(payload)
-    decompressed_txt = decodes(bz2.decompress(compressed_txt))
+    decompressed_txt = decodes(decompress(compressed_txt))
     fichero.write(decompressed_txt.encode("utf-16-le", errors="strict")))
     print(f"Transmission ok, total received packets: {received_packets}")
     #print(payload)

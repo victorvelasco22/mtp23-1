@@ -46,6 +46,7 @@ ok = False
 try:
   for i in range(len(payload)):
     message = struct.pack("<32s",payload[i])
+    ok = False
     while not ok:
       ok = radio.write(message)
       packets_sent += 1

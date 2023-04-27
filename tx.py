@@ -2,33 +2,10 @@ import struct
 import time
 from pyrf24 import RF24
 import bz2
-
+import functions
 # FUNCTIONS
 
-#read the utf-16-le file
-def open_txt():
-  with open("/home/rpi/mtp23/Quick Mode S23 Test File C.txt", "rb") as f:
-        text = f.read().decode("utf-16-le", errors="strict")
-  return text
 
-#encoding of the text to utf-16-le for compression
-def encodes(text):
-  return text.encode(encoding='utf-16-le', errors='strict')
-
-#decode the text back to utf-16
-def decodes(text):
-  return text.decode(encoding='utf-16-le', errors='strict')
-
-#fragment text in blocks of 32 bytes
-def frament_the_text(text):
-  payload = list()
-  for i in range(0,len(text), 32):
-    payload.append(text[i:i+32])
-  return payload
-
-def compress(text_to_tx):
-  # preset = 9 -> max compression, but slowest
-  return bz2.compress(text_to_tx, compresslevel=9)
   
 # MAIN
 

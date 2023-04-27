@@ -40,10 +40,9 @@ try:
                     byte_txt = b''.join([byte_txt, fragment[i]])
                 #payload.append(fragment)
                 received_packets += 1
-    #compressed_txt = "".join(byte_txt)
+    print(f"Transmission ok, total received packets: {received_packets}")
     decompressed_txt = decodes(decompress(byte_txt))
     fichero.write(decompressed_txt.encode("utf-16-le", errors="strict"))
-    print(f"Transmission ok, total received packets: {received_packets}")
     #print(payload)
     fichero.close()
     radio.power = False

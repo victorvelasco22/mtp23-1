@@ -46,7 +46,7 @@ try:
                 #    fichero.write(fragment[i])
                 payload.append(fragment)
                 received_packets += 1
-    compressed_txt = "".join(payload)
+                compressed_txt = "".join(fragment)
     decompressed_txt = decodes(decompress(compressed_txt))
     fichero.write(decompressed_txt.encode("utf-16-le", errors="strict"))
     print(f"Transmission ok, total received packets: {received_packets}")

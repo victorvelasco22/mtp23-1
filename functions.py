@@ -11,7 +11,7 @@ def decodes(text):
 
 #read the utf-16-le file
 def open_txt():
-  with open("/home/rpi/mtp23/Quick Mode S23 Test File C.txt", "rb") as f:
+  with open("/home/rpi/mtp23/test_file_16_utf_le_1MB.txt", "rb") as f:
         text = f.read().decode("utf-16-le", errors="strict")
   return text
 

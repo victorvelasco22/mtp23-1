@@ -81,7 +81,7 @@ try:
     print("Transmission complete")
   else:
     print("Transmission failed")
-  fichero.close()
+  #fichero.close()
   radio.power = False
 except KeyboardInterrupt:
   print("powering down radio and exiting.")

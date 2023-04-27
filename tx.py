@@ -35,6 +35,7 @@ text_compressed = compress(text_to_tx)
 
 #FRAGMENT THE COMPRESSED TEXT IN BLOCKS OF 32 BYTES
 payload = frament_the_text(text_compressed)
+print("Num packets: " + str(len(payload)))
 
 #PUT DEVICE IN TX MODE
 radio.listen = False
@@ -46,8 +47,8 @@ try:
     message = struct.pack("<32s",payload[i])
     ok = radio.write(message)
     packets_sent += 1
-    #print(f"Sending {packets_sent}...", ("ok" if ok else "failed"))
-    print(message)
+    print(f"Sending {packets_sent}...", ("ok" if ok else "failed"))
+    #print(message)
   message = struct.pack("<32s",EOF)
   ok = radio.write(message)
   

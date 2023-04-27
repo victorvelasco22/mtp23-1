@@ -51,8 +51,8 @@ try:
                 received_packets += 1
                 #print("payload")
                 #print(payload)
-    compressed_txt = "".join(byte_txt)
-    decompressed_txt = decodes(decompress(compressed_txt))
+    #compressed_txt = "".join(byte_txt)
+    decompressed_txt = decodes(decompress(byte_txt))
     fichero.write(decompressed_txt.encode("utf-16-le", errors="strict"))
     print(f"Transmission ok, total received packets: {received_packets}")
     #print(payload)

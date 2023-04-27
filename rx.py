@@ -37,12 +37,9 @@ try:
             else:
                 for i in range(len(fragment)):
                     #fichero.write(fragment[i])
-                    print(fragment[i])
                     byte_txt = b''.join([byte_txt, fragment[i]])
                 #payload.append(fragment)
                 received_packets += 1
-                #print("payload")
-                #print(payload)
     #compressed_txt = "".join(byte_txt)
     decompressed_txt = decodes(decompress(byte_txt))
     fichero.write(decompressed_txt.encode("utf-16-le", errors="strict"))

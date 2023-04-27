@@ -46,7 +46,7 @@ try:
                 for i in range(len(fragment)):
                     #fichero.write(fragment[i])
                     print(fragment[i])
-                    byte_txt = byte_txt.join(fragment[i])
+                    byte_txt = b''.join([byte_txt, fragment[i]])
                 #payload.append(fragment)
                 received_packets += 1
                 #print("payload")

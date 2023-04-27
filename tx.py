@@ -18,7 +18,7 @@ if not radio.begin():
 #RADIO SETUP
 address=12345
 radio.setPALevel(2,1)
-radio.setRetries(15,15)
+radio.setRetries(10,15)
 radio.openWritingPipe(address)
 radio.channel = 90
 radio.setPayloadSize(struct.calcsize("<32s"))

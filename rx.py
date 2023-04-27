@@ -33,6 +33,7 @@ fichero = open("/home/rpi/output.txt", "wb")
 eof = False
 payload = []
 received_packets = 0
+byte_txt = bytes('', 'utf-16-le')
 
 try:
     while not eof:
@@ -42,13 +43,14 @@ try:
             if fragment == EOF:
                 eof = True
             else:
-                #for i in range(len(fragment)):
-                #    fichero.write(fragment[i])
-                payload.append(fragment)
+                for i in range(len(fragment)):
+                    #fichero.write(fragment[i])
+                    byte_txt = byte_txt.join(fragment[i])
+                #payload.append(fragment)
                 received_packets += 1
-                print("payload")
-                print(payload)
-    compressed_txt = "".join(payload)
+                #print("payload")
+                #print(payload)
+    compressed_txt = "".join(byte_txt)
     decompressed_txt = decodes(decompress(compressed_txt))
     fichero.write(decompressed_txt.encode("utf-16-le", errors="strict"))
     print(f"Transmission ok, total received packets: {received_packets}")

@@ -1,16 +1,8 @@
 import struct
 from pyrf24 import RF24
 import bz2
+from functions import  *
 
-# FUNCTIONS
-#decode the text back to utf-16
-def decodes(text):
-  return text.decode(encoding='utf-16-le', errors='strict')
-
-def decompress(compressed_txt):
-    return bz2.decompress(compressed_txt)
-
-  
 # MAIN
 EOF = (b'\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF',)
 

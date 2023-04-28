@@ -17,11 +17,11 @@ def encodes(text):
 def decodes(text):
   return text.decode(encoding='utf-16-le', errors='strict')
 
-#fragment text in a list elements of 32 bytes
+#fragment text in a list elements of 31 bytes (the first one is the sequence number)
 def frament_the_text(text):
   payload = list()
-  for i in range(0,len(text), 32):
-    payload.append(text[i:i+32])
+  for i in range(0,len(text), 31):
+    payload.append(text[i:i+31])
   return payload
 
 def compress(text_to_tx):

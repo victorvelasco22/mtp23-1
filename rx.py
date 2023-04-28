@@ -33,7 +33,7 @@ try:
         if radio.available():
             buffer = radio.read()
             fragment = struct.unpack("<B31s",buffer)
-            print(fragment)
+            #print(fragment)
             if fragment == EOF1 or fragment == EOF2:
                 eof = True
             elif fragment[0] == expected_seq_num:

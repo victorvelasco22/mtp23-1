@@ -35,7 +35,7 @@ try:
             fragment = struct.unpack("<B31s",buffer)
             if fragment == EOF1 or fragment == EOF2:
                 eof = True
-            elif fragment[0] == expected_seq_number:
+            elif fragment[0] == expected_seq_num:
                 for i in range(len(fragment)-1):
                     #fichero.write(fragment[i])
                     byte_txt = b''.join([byte_txt, fragment[i+1]])

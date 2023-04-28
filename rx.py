@@ -4,7 +4,7 @@ import bz2
 from functions import  *
 
 # MAIN
-EOF = (b'\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF',)
+EOF = (b'\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF',)
 
 radio = RF24(22, 0)
 
@@ -38,10 +38,10 @@ try:
                     #fichero.write(fragment[i])
                     byte_txt = b''.join([byte_txt, fragment[i+1]])
                 #payload.append(fragment)
-                if seq_num == 0x00:
-                    seq_num = 0x01
-                elif seq_num == 0x01:
-                    seq_num = 0x00
+                if expected_seq_num == 0x00:
+                    expected_seq_num = 0x01
+                elif expected_seq_num == 0x01:
+                    expected_seq_num = 0x00
                 received_packets += 1
     print(f"Transmission ok, total received packets: {received_packets}")
     decompressed_bytes = decompress(byte_txt)

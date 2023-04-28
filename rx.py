@@ -22,7 +22,7 @@ radio.channel = 90
 radio.listen = True
 radio.print_pretty_details()
 
-expected_seq_number = 0x00
+expected_seq_num = 0x00
 eof = False
 payload = []
 received_packets = 0

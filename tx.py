@@ -53,7 +53,7 @@ try:
     while not ok:
       ok = radio.write(message)
       total_packets_sent += 1
-      print(f"Sending {total_packets_sent}...", ("ok" if ok else "failed"))
+      #print(f"Sending {total_packets_sent}...", ("ok" if ok else "failed"))
       if not ok:
         packets_sent_failed += 1
     packets_sent_ok += 1
@@ -69,9 +69,12 @@ try:
   while not ok:
       ok = radio.write(message)
       total_packets_sent += 1
-      print(f"Sending {total_packets_sent}...", ("ok" if ok else "failed"))
+      #print(f"Sending {total_packets_sent}...", ("ok" if ok else "failed"))
   if ok:
     print("Transmission complete")
+    print(f"Total packets sent: {total_packets_sent}")
+    print(f"Total packets ok: {packets_sent_ok}")
+    print(f"Total packets failed: {packets_sent_failed}")
   else:
     print("Transmission failed")
   #fichero.close()

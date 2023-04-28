@@ -4,7 +4,9 @@ import bz2
 from functions import  *
 
 # MAIN
-EOF = (b'\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF',)
+#2 EOF depending on the sequence number
+EOF1 = (b'\0x00\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF',)
+EOF2 = (b'\0x01\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF',)
 
 radio = RF24(22, 0)
 
@@ -30,8 +32,8 @@ try:
     while not eof:
         if radio.available():
             buffer = radio.read()
-            fragment = struct.unpack("<B32s",buffer)
-            if fragment == EOF:
+            fragment = struct.unpack("<B31s",buffer)
+            if fragment == EOF1 or fragment == EOF2:
                 eof = True
             elif fragment[0] == expected_seq_number:
                 for i in range(len(fragment)-1):

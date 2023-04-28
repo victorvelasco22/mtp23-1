@@ -20,8 +20,6 @@ radio.channel = 90
 radio.listen = True
 radio.print_pretty_details()
 
-fichero = open("/home/rpi/output.txt", "wb")
-
 eof = False
 payload = []
 received_packets = 0
@@ -41,9 +39,9 @@ try:
                 #payload.append(fragment)
                 received_packets += 1
     print(f"Transmission ok, total received packets: {received_packets}")
-    decompressed_txt = decodes(decompress(byte_txt))
-    fichero.write(decompressed_txt.encode("utf-16-le", errors="strict"))
-    #print(payload)
+    decompressed_bytes = decompress(byte_txt)
+    with open("/home/rpi/output.txt", mode="wb") as fichero:
+        fichero.write(decompressed_bytes)
     fichero.close()
     radio.power = False
     

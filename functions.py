@@ -3,21 +3,19 @@ from glob import glob
 from subprocess import check_output, CalledProcessError
 import bz2
 
-#
-
-#decode the text back to utf-16
-def decodes(text):
-  return text.decode(encoding='utf-16-le', errors='strict')
-
 #read the utf-16-le file
 def open_txt():
   with open("/home/rpi/mtp23/test_file_16_utf_le_1MB.txt", "rb") as f:
-        text = f.read().decode("utf-16-le", errors="strict")
+        text = f.read()
   return text
 
-#encoding of the text to utf-16-le for compression
+#encoding of the text to utf-16-le for compression, NOT USED NOT
 def encodes(text):
   return text.encode(encoding='utf-16-le', errors='strict')
+
+#decode the text back to utf-16, NOT USED NOT
+def decodes(text):
+  return text.decode(encoding='utf-16-le', errors='strict')
 
 #fragment text in a list elements of 32 bytes
 def frament_the_text(text):

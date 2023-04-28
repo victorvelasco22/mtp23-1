@@ -24,7 +24,10 @@ radio.channel = 90
 radio.setPayloadSize(struct.calcsize("<32s"))
 radio.print_pretty_details()
 
-packets_sent = 0
+total_packets_sent = 0
+packets_sent_ok = 0
+packets_sent_failed = 0
+seq_num = 0x00
 
 #READ THE FILE
 #TO DO: always listening and detect the file automatically (Joan)
@@ -44,16 +47,29 @@ ok = False
 #START THE TRANSMISSION
 try:
   for i in range(len(payload)):
-    message = struct.pack("<32s",payload[i])
+    message = struct.pack("<B32s",seq_num,payload[i])
     ok = False
+    #Infinite retries
     while not ok:
       ok = radio.write(message)
-      packets_sent += 1
-      print(f"Sending {packets_sent}...", ("ok" if ok else "failed"))
+      total_packets_sent += 1
+      print(f"Sending {total_packets_sent}...", ("ok" if ok else "failed"))
+      if not ok:
+        packets_sent_failed += 1
+    packets_sent_ok += 1
+    #Changing sequence number
+    if seq_num == 0x00:
+      seq_num = 0x01
+    else if seq_num == 0x01:
+      seq_num = 0x00
     #print(message)
-  message = struct.pack("<32s",EOF)
+  #Sending EOF
+  message = struct.pack("<B32s",seq_num,EOF)
   ok = radio.write(message)
-  
+  while not ok:
+      ok = radio.write(message)
+      total_packets_sent += 1
+      print(f"Sending {total_packets_sent}...", ("ok" if ok else "failed"))
   if ok:
     print("Transmission complete")
   else:

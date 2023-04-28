@@ -26,16 +26,15 @@ radio.print_pretty_details()
 
 packets_sent = 0
 
-#READ THE FILE (Joan)
-#TO DO: always listening and detect the file automatically
-original_text = open_txt()
-text_to_tx = encodes(original_text)
+#READ THE FILE
+#TO DO: always listening and detect the file automatically (Joan)
+bytes_to_tx = open_txt()
 
 #COMPRESSION (Josep)
-text_compressed = compress(text_to_tx)
+bytes_compressed = compress(bytes_to_tx)
 
 #FRAGMENT THE COMPRESSED TEXT IN BLOCKS OF 32 BYTES
-payload = frament_the_text(text_compressed)
+payload = frament_the_text(bytes_compressed)
 print("Num packets: " + str(len(payload)))
 
 #PUT DEVICE IN TX MODE

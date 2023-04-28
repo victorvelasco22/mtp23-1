@@ -9,7 +9,7 @@ from functions import  *
 radio = RF24(22, 0)
 
 #TO DO: migrate to functions.py
-EOF = b'\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF' 
+EOF = b'\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF' 
 
 # initialize the nRF24L01 on the spi bus
 if not radio.begin():
@@ -21,7 +21,7 @@ radio.setPALevel(2,1)
 radio.setRetries(10,15)
 radio.openWritingPipe(address)
 radio.channel = 90
-radio.setPayloadSize(struct.calcsize("<32s"))
+radio.setPayloadSize(struct.calcsize("<B32s"))
 radio.print_pretty_details()
 
 total_packets_sent = 0

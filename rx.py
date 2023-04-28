@@ -20,6 +20,7 @@ radio.channel = 90
 radio.listen = True
 radio.print_pretty_details()
 
+expected_seq_number = 0x00
 eof = False
 payload = []
 received_packets = 0
@@ -29,14 +30,18 @@ try:
     while not eof:
         if radio.available():
             buffer = radio.read()
-            fragment = struct.unpack("<32s",buffer)
+            fragment = struct.unpack("<B32s",buffer)
             if fragment == EOF:
                 eof = True
-            else:
-                for i in range(len(fragment)):
+            else if fragment[0] == expected_seq_number:
+                for i in range(len(fragment)-1):
                     #fichero.write(fragment[i])
-                    byte_txt = b''.join([byte_txt, fragment[i]])
+                    byte_txt = b''.join([byte_txt, fragment[i+1]])
                 #payload.append(fragment)
+                if seq_num == 0x00:
+                    seq_num = 0x01
+                else if seq_num == 0x01:
+                    seq_num = 0x00
                 received_packets += 1
     print(f"Transmission ok, total received packets: {received_packets}")
     decompressed_bytes = decompress(byte_txt)

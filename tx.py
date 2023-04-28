@@ -8,8 +8,8 @@ from functions import  *
 
 radio = RF24(22, 0)
 
-#TO DO: migrate to functions.py
-EOF = b'\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF' 
+#EOF constant of 31 bytes equally setted to xFF
+EOF = b'\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF' 
 
 # initialize the nRF24L01 on the spi bus
 if not radio.begin():
@@ -21,7 +21,7 @@ radio.setPALevel(2,1)
 radio.setRetries(10,15)
 radio.openWritingPipe(address)
 radio.channel = 90
-radio.setPayloadSize(struct.calcsize("<B32s"))
+radio.setPayloadSize(struct.calcsize("<B31s"))
 radio.print_pretty_details()
 
 total_packets_sent = 0
@@ -36,7 +36,7 @@ bytes_to_tx = open_txt()
 #COMPRESSION (Josep)
 bytes_compressed = compress(bytes_to_tx)
 
-#FRAGMENT THE COMPRESSED TEXT IN BLOCKS OF 32 BYTES
+#FRAGMENT THE COMPRESSED TEXT IN BLOCKS OF 31 BYTES (The first one is the sequence number)
 payload = frament_the_text(bytes_compressed)
 print("Num packets: " + str(len(payload)))
 
@@ -47,7 +47,7 @@ ok = False
 #START THE TRANSMISSION
 try:
   for i in range(len(payload)):
-    message = struct.pack("<B32s",seq_num,payload[i])
+    message = struct.pack("<B31s",seq_num,payload[i])
     ok = False
     #Infinite retries
     while not ok:
@@ -64,7 +64,7 @@ try:
       seq_num = 0x00
     #print(message)
   #Sending EOF
-  message = struct.pack("<B32s",seq_num,EOF)
+  message = struct.pack("<B31s",seq_num,EOF)
   ok = radio.write(message)
   while not ok:
       ok = radio.write(message)

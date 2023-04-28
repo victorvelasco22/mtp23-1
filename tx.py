@@ -60,7 +60,7 @@ try:
     #Changing sequence number
     if seq_num == 0x00:
       seq_num = 0x01
-    else if seq_num == 0x01:
+    elif seq_num == 0x01:
       seq_num = 0x00
     #print(message)
   #Sending EOF

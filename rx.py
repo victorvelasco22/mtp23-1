@@ -33,14 +33,14 @@ try:
             fragment = struct.unpack("<B32s",buffer)
             if fragment == EOF:
                 eof = True
-            else if fragment[0] == expected_seq_number:
+            elif fragment[0] == expected_seq_number:
                 for i in range(len(fragment)-1):
                     #fichero.write(fragment[i])
                     byte_txt = b''.join([byte_txt, fragment[i+1]])
                 #payload.append(fragment)
                 if seq_num == 0x00:
                     seq_num = 0x01
-                else if seq_num == 0x01:
+                elif seq_num == 0x01:
                     seq_num = 0x00
                 received_packets += 1
     print(f"Transmission ok, total received packets: {received_packets}")

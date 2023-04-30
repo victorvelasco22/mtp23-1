@@ -66,3 +66,31 @@ def write_on_pen(data):                         #obtenció del path fins al pend
     os.chdir(dir)                               #establim el directori del usb(dir) com a directori de treball.
     with open("Output.txt", "w") as text_file:  #es converteix string(data) a fitxer .txt(Output.txt).
         text_file.write(data)
+
+
+        #controlador pels leds
+import RPi.GPIO as GPIO  #importem la llibreria correpsonent
+
+GPIO.setmode(GPIO.BCM) #establim com es fara referencia als pins de la RPi
+
+#Definim constants per a referirnos als Leds de una manera més senzilla
+L1=17
+L2=27
+L3=22
+L4=9
+L5=11
+
+#establim els pins conectats als leds com a outputs
+GPIO.setup(L1, GPIO.OUT)
+GPIO.setup(L2, GPIO.OUT)
+GPIO.setup(L3, GPIO.OUT)
+GPIO.setup(L4, GPIO.OUT)
+GPIO.setup(L5, GPIO.OUT)
+
+def led_manager(led, estat): #funció per a operar els leds, es donen com a inputs el led i l'estat del led (On/Off) per a fer el funcionament d'aquests
+  if(estat):
+    GPIO.output(led, GPIO.HIGH) #obrir el led
+
+  else:
+    GPIO.output(led, GPIO.LOW) #tencar el led
+

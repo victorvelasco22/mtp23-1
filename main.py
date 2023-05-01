@@ -39,6 +39,7 @@ def active():
     
 def read_usb():
     #AQUI cridar les funcions necesaries per a llegir del usb
+    #Llegir del usb i copiar-ho al directori corresponent de la funció "open_txt()"
     while (SW4==True):
         continue
 
@@ -55,6 +56,17 @@ def network_mode():
 def tx_mode(): 
     #AQUI cridar les funcions necesaries per a executar el network mode
     while (SW6==True):
+        radio = RF24(22, 0)
+        
+        if not radio.begin():
+            raise OSError("nRF24L01 hardware isn't responding")
+        
+        radio_setup(12345, False)
+        
+        payload = frament_the_text(compress(open_txt()))
+        
+        tx(payload)
+        
         continue
 
 def rx_mode(): 

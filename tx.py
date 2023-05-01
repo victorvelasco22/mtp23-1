@@ -1,7 +1,7 @@
 import struct
-import time
+#import time
 from pyrf24 import RF24
-import bz2
+#import bz2
 from functions import  *
   
 # MAIN

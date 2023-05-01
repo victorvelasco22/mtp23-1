@@ -76,7 +76,6 @@ def tx_mode():
             #encendre un altre led
         
         radio.power = False
-        continue
 
 def rx_mode(): 
     #AQUI cridar les funcions necesaries per a executar el rx mode
@@ -101,7 +100,6 @@ def rx_mode():
         write(reception[1])
         
         radio.power = False
-        continue
 
 #estat de inici 
 while True:

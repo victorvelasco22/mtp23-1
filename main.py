@@ -1,7 +1,6 @@
 import RPi.GPIO as GPIO #importem la llibreria correpsonent
 from functions import *
 from pyrf24 import RF24
-import struct
 
 GPIO.setmode(GPIO.BCM) #establim com es fara referencia als pins de la RPi
 

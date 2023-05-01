@@ -11,10 +11,55 @@ EOF2 = (1, b'\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xF
 #mode = False for TX or True for RX
 def radio_setup(addr, mode):
   radio.setPALevel(2,1)
+  radio.listen = mode
+  radio.setRetries(10,15)
   radio.openReadingPipe(0,addr)
   radio.channel = 90
-  radio.listen = mode
+  radio.setPayloadSize(struct.calcsize("<B31s"))
   radio.print_pretty_details()
+
+def tx(payload):
+  total_packets_sent = 0
+  packets_sent_ok = 0
+  packets_sent_failed = 0
+  seq_num = 0x00
+  try:
+    for i in range(len(payload)):
+      message = struct.pack("<B31s",seq_num,payload[i])
+      ok = False
+      #Infinite retries
+      while not ok:
+        ok = radio.write(message)
+        total_packets_sent += 1
+        #print(f"Sending {total_packets_sent}...", ("ok" if ok else "failed"))
+        if not ok:
+          packets_sent_failed += 1
+      packets_sent_ok += 1
+      #Changing sequence number
+      if seq_num == 0x00:
+        seq_num = 0x01
+      elif seq_num == 0x01:
+        seq_num = 0x00
+      #print(message)
+    #Sending EOF
+    message = struct.pack("<B31s",seq_num,EOF)
+    ok = radio.write(message)
+    while not ok:
+      ok = radio.write(message)
+      total_packets_sent += 1
+      #print(f"Sending {total_packets_sent}...", ("ok" if ok else "failed"))
+    if ok:
+      print("Transmission complete")
+      print(f"Total packets sent: {total_packets_sent}")
+      print(f"Total packets ok: {packets_sent_ok}")
+      print(f"Total packets failed: {packets_sent_failed}")
+    else:
+      print("Transmission failed")
+    radio.power = False
+    return ok
+  except KeyboardInterrupt:
+    print("powering down radio and exiting.")
+    radio.power = False
 
 #CHANGE FILE PATH/NAME
 #read the utf-16-le file

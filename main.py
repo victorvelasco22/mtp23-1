@@ -54,7 +54,7 @@ def network_mode():
         continue
 
 def tx_mode(): 
-    #AQUI cridar les funcions necesaries per a executar el network mode
+    #AQUI cridar les funcions necesaries per a executar el tx mode
     while (SW6==True):
         radio = RF24(22, 0)
         
@@ -70,7 +70,7 @@ def tx_mode():
         continue
 
 def rx_mode(): 
-    #AQUI cridar les funcions necesaries per a executar el network mode
+    #AQUI cridar les funcions necesaries per a executar el rx mode
     while (SW6==True):
         continue
 

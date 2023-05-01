@@ -65,8 +65,8 @@ def tx_mode():
         
         payload = frament_the_text(compress(open_txt()))
         
-        tx(payload)
-        
+        ok = tx(payload)
+        #encendre leds en funció del valor de "ok"
         continue
 
 def rx_mode(): 

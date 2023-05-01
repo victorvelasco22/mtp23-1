@@ -69,8 +69,10 @@ def tx_mode():
         
         #encendre leds en funció del valor de "ok"
         if ok:
+            continue
             #encendre un led
         elif not ok:
+            continue
             #encendre un altre led
         
         radio.power = False
@@ -90,8 +92,10 @@ def rx_mode():
  
         #encendre leds en funció del valor de "reception[0]"
         if reception[0]:
+            continue
             #encendre un led
         elif not reception[0]:
+            continue
             #encendre un altre led
         
         write(reception[1])

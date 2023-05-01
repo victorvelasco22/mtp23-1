@@ -16,7 +16,6 @@ def radio_setup(addr, mode):
   radio.listen = mode
   radio.print_pretty_details()
 
-
 #CHANGE FILE PATH/NAME
 #read the utf-16-le file
 def open_txt():

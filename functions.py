@@ -46,7 +46,7 @@ def rx():
     radio.power = False
   return eof, byte_txt
 
-def write(byte_txt)
+def write(byte_txt):
   decompressed_bytes = decompress(byte_txt)
   with open("/home/rpi/output.txt", mode="wb") as fichero:
       fichero.write(decompressed_bytes)

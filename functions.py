@@ -18,6 +18,39 @@ def radio_setup(addr, mode):
   radio.setPayloadSize(struct.calcsize("<B31s"))
   radio.print_pretty_details()
 
+def rx():
+  expected_seq_num = 0x00
+  eof = False
+  payload = []
+  received_packets = 0
+  byte_txt = bytes('', 'utf-16-le')
+  try:
+    while not eof:
+        if radio.available():
+            buffer = radio.read()
+            fragment = struct.unpack("<B31s",buffer)
+            if fragment == EOF1 or fragment == EOF2:
+                eof = True
+            elif fragment[0] == expected_seq_num:
+                for i in range(len(fragment)-1):
+                    byte_txt = b''.join([byte_txt, fragment[i+1]])
+                if expected_seq_num == 0x00:
+                    expected_seq_num = 0x01
+                elif expected_seq_num == 0x01:
+                    expected_seq_num = 0x00
+                received_packets += 1
+    print(f"Transmission ok, total received packets: {received_packets}")
+  except KeyboardInterrupt:
+    print("powering down radio and exiting.")
+    radio.power = False
+  return eof, byte_txt
+
+def write(byte_txt)
+  decompressed_bytes = decompress(byte_txt)
+  with open("/home/rpi/output.txt", mode="wb") as fichero:
+      fichero.write(decompressed_bytes)
+  fichero.close()
+
 def tx(payload):
   total_packets_sent = 0
   packets_sent_ok = 0

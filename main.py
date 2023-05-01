@@ -20,11 +20,6 @@ GPIO.setup(SW5, GPIO.IN)
 GPIO.setup(SW6, GPIO.IN)
 GPIO.setup(SW7, GPIO.IN)
 
-#Constants utilitzades per TX
-EOF = b'\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF'
-
-#Constants utilitzades per RX
-
 #definicio dels diferents estats necesaris per a fer el main.
 def active():
     while (SW1==True):

@@ -5,12 +5,12 @@ from pyrf24 import RF24
 GPIO.setmode(GPIO.BCM) #establim com es fara referencia als pins de la RPi
 
 #establim com es fara referencia als pins de la RPi
-SW1=13
-SW2=19
-SW3=26
-SW4=21
-SW5=20
-SW6=16
+SW1=13 #active/stand by
+SW2=19 #tx/rx
+SW3=26 #fm/nm
+SW4=21 #load usb
+SW5=20 #unload usb
+SW6=16 #go/stop
 SW7=12
 
 #establim els pins conectats als switches com a inputs
@@ -24,16 +24,16 @@ GPIO.setup(SW7, GPIO.IN)
 
 #definicio dels diferents estats necesaris per a fer el main.
 def active():
-    while (SW1==True):
-        if (SW4==True):
+    while (SW1==True): #pasem a active mode
+        if (SW4==True): #load usb
             read_usb()
-        elif (SW5==True):
+        elif (SW5==True): #unload usb
             write_usb()
-        elif (SW6==True & SW3==True):
+        elif (SW6==True & SW3==True): #network mode
             network_mode()
-        elif (SW6==True & SW3==False & SW2==False):
+        elif (SW6==True & SW3==False & SW2==False): #rx
             rx_mode()
-        elif (SW6==True & SW3==False & SW2==True):
+        elif (SW6==True & SW3==False & SW2==True): #tx
             tx_mode()
     
 def read_usb():

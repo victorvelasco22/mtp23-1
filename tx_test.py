@@ -13,11 +13,11 @@ payload = frament_the_text(compress(open_txt()))
 ok = tx(payload)
 
 #encendre leds en funció del valor de "ok"
-if ok:
-    continue
+#if ok:
+#    continue
     #encendre un led
-elif not ok:
-    continue
+#elif not ok:
+#    continue
     #encendre un altre led
 
 radio.power = False

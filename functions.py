@@ -12,8 +12,9 @@ EOF2 = (1, b'\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xF
 #radio setup
 #mode = False for TX or True for RX
 
+radio = RF24(22, 0)
+
 def radioSetupRX():
-  radio = RF24(22, 0)
   if not radio.begin():
       raise OSError("nRF24L01 hardware isn't responding")
   radio.setPALevel(2,1)
@@ -23,7 +24,6 @@ def radioSetupRX():
   radio.print_pretty_details()
 
 def radioSetupTX():
-  radio = RF24(22, 0)
   if not radio.begin():
       raise OSError("nRF24L01 hardware isn't responding")
   radio.setPALevel(2,1)

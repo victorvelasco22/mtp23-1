@@ -11,11 +11,11 @@ radio_setup(12345, True)
 reception = rx()
 
 #encendre leds en funció del valor de "reception[0]"
-if reception[0]:
-    continue
+#if reception[0]:
+#    continue
     #encendre un led
-elif not reception[0]:
-    continue
+#elif not reception[0]:
+#    continue
     #encendre un altre led
 
 write(reception[1])

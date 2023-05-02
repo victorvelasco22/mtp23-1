@@ -59,51 +59,54 @@ def network_mode():
 
 def tx_mode(): 
     #AQUI cridar les funcions necesaries per a executar el tx mode
+    radio = RF24(22, 0)
+
+    if not radio.begin():
+        raise OSError("nRF24L01 hardware isn't responding")
+
+    radio_setup(12345, False)
+
+    payload = frament_the_text(compress(open_txt()))
+
+    ok = tx(payload)
+
+    #encendre leds en funció del valor de "ok"
+    if ok:
+        continue
+        #encendre un led
+    elif not ok:
+        continue
+        #encendre un altre led
+
+    radio.power = False
+    
     while (SW6==True):
-        radio = RF24(22, 0)
-        
-        if not radio.begin():
-            raise OSError("nRF24L01 hardware isn't responding")
-        
-        radio_setup(12345, False)
-        
-        payload = frament_the_text(compress(open_txt()))
-        
-        ok = tx(payload)
-        
-        #encendre leds en funció del valor de "ok"
-        if ok:
-            continue
-            #encendre un led
-        elif not ok:
-            continue
-            #encendre un altre led
-        
-        radio.power = False
+        continue
 
 def rx_mode(): 
     #AQUI cridar les funcions necesaries per a executar el rx mode
+    radio = RF24(22, 0)
+
+    if not radio.begin():
+        raise OSError("nRF24L01 hardware isn't responding")
+
+    radio_setup(12345, True)
+
+    reception = rx()
+
+    #encendre leds en funció del valor de "reception[0]"
+    if reception[0]:
+        continue
+        #encendre un led
+    elif not reception[0]:
+        continue
+        #encendre un altre led
+
+    write(reception[1])
+
+    radio.power = False
     while (SW6==True):
-        radio = RF24(22, 0)
-        
-        if not radio.begin():
-            raise OSError("nRF24L01 hardware isn't responding")
-        
-        radio_setup(12345, True)
-        
-        reception = rx()
- 
-        #encendre leds en funció del valor de "reception[0]"
-        if reception[0]:
-            continue
-            #encendre un led
-        elif not reception[0]:
-            continue
-            #encendre un altre led
-        
-        write(reception[1])
-        
-        radio.power = False
+        continue
 
 #estat de inici 
 while True:

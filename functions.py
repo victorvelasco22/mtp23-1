@@ -115,7 +115,9 @@ def tx(payload):
 #CHANGE FILE PATH/NAME
 #read the utf-16-le file
 def open_txt():
-  with open("/media/rpi/USB/*.txt", "rb") as f:
+  for file in glob("*.txt"):
+    print(file)
+  with open('/media/rpi/USB/'+file, "rb") as f:
         text = f.read()
   return text
 

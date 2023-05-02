@@ -6,7 +6,12 @@ radio = RF24(22, 0)
 if not radio.begin():
     raise OSError("nRF24L01 hardware isn't responding")
 
-radio_setup(12345, False)
+radio.setPALevel(2,1)
+radio.setRetries(10,15)
+radio.openWritingPipe(12345)
+radio.channel = 50
+radio.setPayloadSize(struct.calcsize("<B31s"))
+radio.print_pretty_details()
 
 payload = frament_the_text(compress(open_txt()))
 

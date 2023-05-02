@@ -6,7 +6,13 @@ radio = RF24(22, 0)
 if not radio.begin():
     raise OSError("nRF24L01 hardware isn't responding")
 
-radio_setup(12345, True)
+radio.setPALevel(2,1)
+address=12345
+radio.openReadingPipe(0,address)
+radio.channel = 50
+radio.listen = True
+radio.print_pretty_details()
+
 
 reception = rx()
 

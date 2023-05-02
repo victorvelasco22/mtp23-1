@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO #importem la llibreria correpsonent
 from functions import *
 from pyrf24 import RF24
+from time import sleep
 
 GPIO.setmode(GPIO.BCM) #establim com es fara referencia als pins de la RPi
 
@@ -25,6 +26,9 @@ GPIO.setup(SW7, GPIO.IN)
 #definicio dels diferents estats necesaris per a fer el main.
 def active():
     while (SW1==True): #pasem a active mode
+        sleep(0.5)
+        
+        
         if (SW4==True): #load usb
             read_usb()
         elif (SW5==True): #unload usb
@@ -103,5 +107,6 @@ def rx_mode():
 
 #estat de inici 
 while True:
+    sleep(2)
     if SW1==True:
         active()

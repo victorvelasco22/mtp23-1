@@ -10,14 +10,6 @@ EOF2 = (1, b'\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xF
 
 #radio setup
 #mode = False for TX or True for RX
-def radio_setup(radio, addr, mode):
-  radio.setPALevel(2,1)
-  radio.listen = mode
-  radio.setRetries(10,15)
-  radio.openReadingPipe(0,addr)
-  radio.channel = 50
-  radio.setPayloadSize(struct.calcsize("<B31s"))
-  radio.print_pretty_details()
 
 def rx():
   expected_seq_num = 0x00

@@ -11,6 +11,30 @@ EOF2 = (1, b'\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xF
 #radio setup
 #mode = False for TX or True for RX
 
+def radioSetupRX():
+  radio = RF24(22, 0)
+  if not radio.begin():
+      raise OSError("nRF24L01 hardware isn't responding")
+  radio.setPALevel(2,1)
+  radio.openReadingPipe(0,12345)
+  radio.channel = 50
+  radio.listen = True
+  radio.print_pretty_details()
+
+def radioSetupTX():
+  radio = RF24(22, 0)
+  if not radio.begin():
+      raise OSError("nRF24L01 hardware isn't responding")
+  radio.setPALevel(2,1)
+  radio.setRetries(10,15)
+  radio.openWritingPipe(12345)
+  radio.channel = 50
+  radio.setPayloadSize(struct.calcsize("<B31s"))
+  radio.print_pretty_details()
+
+def radioPowerOff():
+  radio.power = False
+  
 def rx():
   expected_seq_num = 0x00
   eof = False

@@ -65,7 +65,7 @@ def rx():
 
 def write(byte_txt):
   decompressed_bytes = decompress(byte_txt)
-  with open("/home/rpi/output.txt", mode="wb") as fichero:
+  with open("/media/rpi/USB/output.txt", mode="wb") as fichero:
       fichero.write(decompressed_bytes)
   fichero.close()
 
@@ -115,7 +115,7 @@ def tx(payload):
 #CHANGE FILE PATH/NAME
 #read the utf-16-le file
 def open_txt():
-  with open("/home/rpi/mtp23/test_file_16_utf_le_1MB.txt", "rb") as f:
+  with open("/media/rpi/USB/*.txt", "rb") as f:
         text = f.read()
   return text
 

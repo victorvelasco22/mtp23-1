@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO #importem la llibreria correpsonent
 
 GPIO.setmode(GPIO.BCM) #establim com es fara referencia als pins de la RPi
-
+GPIO.setwarnings(False)
 
 L1=17
 L2=27

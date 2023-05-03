@@ -89,10 +89,12 @@ def tx(payload):
   try:
     for i in range(len(payload)):
       message = struct.pack("<B31s",seq_num,payload[i])
+      print(seq_num)
       ok = False
       #Infinite retries
       while not ok:
         ok = radio.write(message)
+        print(seq_num)
         total_packets_sent += 1
         #print(f"Sending {total_packets_sent}...", ("ok" if ok else "failed"))
         if not ok:
@@ -100,10 +102,12 @@ def tx(payload):
       packets_sent_ok += 1
       #Changing sequence number
       print(packets_sent_ok)
+      print(seq_num)
       if seq_num == 0x00:
         seq_num = 0x01
       elif seq_num == 0x01:
         seq_num = 0x00
+      print(seq_num)
       print(message)
     #Sending EOF
     message = struct.pack("<B31s",seq_num,EOF)

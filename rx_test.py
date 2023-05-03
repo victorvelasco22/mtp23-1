@@ -14,6 +14,7 @@ elif not reception[0]:
     #encendre un altre led
 
 write(reception[1])
+upload_to_usb()
 
 radioPowerOff()
 

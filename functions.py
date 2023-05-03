@@ -49,19 +49,16 @@ def rx():
         if radio.available():
             buffer = radio.read()
             fragment = struct.unpack("<B31s",buffer)
-            print("1: "+str(expected_seq_num))
-            print(fragment)
+            #print(fragment)
             if fragment == EOF1 or fragment == EOF2:
                 eof = True
             elif fragment[0] == expected_seq_num:
                 for i in range(len(fragment)-1):
                     byte_txt = b''.join([byte_txt, fragment[i+1]])
-                print("2: "+str(expected_seq_num))
                 if expected_seq_num == 0x00:
                     expected_seq_num = 0x01
                 elif expected_seq_num == 0x01:
                     expected_seq_num = 0x00
-                print("3: "+str(expected_seq_num))
                 received_packets += 1
                 print(received_packets)
     print(f"Transmission ok, total received packets: {received_packets}")
@@ -89,12 +86,10 @@ def tx(payload):
   try:
     for i in range(len(payload)):
       message = struct.pack("<B31s",seq_num,payload[i])
-      print(seq_num)
       ok = False
       #Infinite retries
       while not ok:
         ok = radio.write(message)
-        print(seq_num)
         total_packets_sent += 1
         #print(f"Sending {total_packets_sent}...", ("ok" if ok else "failed"))
         if not ok:
@@ -102,13 +97,11 @@ def tx(payload):
       packets_sent_ok += 1
       #Changing sequence number
       print(packets_sent_ok)
-      print(seq_num)
       if seq_num == 0x00:
         seq_num = 0x01
       elif seq_num == 0x01:
         seq_num = 0x00
-      print(seq_num)
-      print(message)
+      #print(message)
     #Sending EOF
     message = struct.pack("<B31s",seq_num,EOF)
     ok = radio.write(message)

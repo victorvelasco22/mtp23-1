@@ -3,6 +3,8 @@ from functions import *
 from pyrf24 import RF24
 from time import sleep
 
+radio = RF24(22, 0)
+
 GPIO.setmode(GPIO.BCM) #establim com es fara referencia als pins de la RPi
 
 #establim com es fara referencia als pins de la RPi

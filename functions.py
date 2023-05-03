@@ -67,6 +67,7 @@ def rx():
 
 def upload_to_usb():
   shutil.copy("/home/rpi/textfile/output.txt", "/media/rpi/USB/output.txt")
+  print("Uploaded successfully")
 
 def write(byte_txt):
   decompressed_bytes = decompress(byte_txt)
@@ -123,7 +124,7 @@ def download_from_usb():
   for file in glob("/media/rpi/USB/*.txt"):
     continue
   shutil.copy(file, "/home/rpi/textfile/file.txt")
-  
+  print("Downloaded successfully")
   
 #CHANGE FILE PATH/NAME
 #read the utf-16-le file

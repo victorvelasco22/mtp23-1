@@ -31,6 +31,7 @@ def radioSetupTX():
   radio.setRetries(10,15)
   radio.openWritingPipe(12345)
   radio.channel = 50
+  radio.listen = False
   radio.setPayloadSize(struct.calcsize("<B31s"))
   radio.print_pretty_details()
 

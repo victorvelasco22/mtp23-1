@@ -1,9 +1,8 @@
 import RPi.GPIO as GPIO #importem la llibreria correpsonent
 
 GPIO.setmode(GPIO.BCM) #establim com es fara referencia als pins de la RPi
-GPIO.setwarnings(False)
 
-L1=17
+L_vermell=2
 L2=27
 L3=22
 L4=9
@@ -20,7 +19,7 @@ SW7=12
 On=True
 Off=False
 
-GPIO.setup(L1, GPIO.OUT)
+GPIO.setup(L_vermell, GPIO.OUT)
 GPIO.setup(L2, GPIO.OUT)
 GPIO.setup(L3, GPIO.OUT)
 GPIO.setup(L4, GPIO.OUT)
@@ -34,7 +33,7 @@ GPIO.setup(SW5, GPIO.IN)
 GPIO.setup(SW6, GPIO.IN)
 GPIO.setup(SW7, GPIO.IN)
 
-GPIO.output(L1, GPIO.LOW)
+GPIO.output(L_vermell, GPIO.LOW)
 GPIO.output(L2, GPIO.LOW)
 GPIO.output(L3, GPIO.LOW)
 GPIO.output(L4, GPIO.LOW)
@@ -52,7 +51,7 @@ def led_manager(color, estat):
 #definicio dels diferents estats necesaris per a fer el main.
 def active():
     while (SW1==True):
-        led_manager(L1,On)
+        led_manager(L_vermell,On)
         if (SW7==True):
             led_manager(L1,Off)
             read_usb()
@@ -66,7 +65,7 @@ def active():
             led_manager(L1,Off)
             rx_mode()
         elif (SW6==True & SW3==False & SW2==True):
-            led_manager(L1,Off)
+            led_manager(L_vermell,Off)
             tx_mode()
     
 def read_usb():

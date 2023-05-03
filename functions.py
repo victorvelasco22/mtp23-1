@@ -49,16 +49,19 @@ def rx():
         if radio.available():
             buffer = radio.read()
             fragment = struct.unpack("<B31s",buffer)
+            print("1: "+str(expected_seq_num))
             print(fragment)
             if fragment == EOF1 or fragment == EOF2:
                 eof = True
             elif fragment[0] == expected_seq_num:
                 for i in range(len(fragment)-1):
                     byte_txt = b''.join([byte_txt, fragment[i+1]])
+                print("2: "+str(expected_seq_num))
                 if expected_seq_num == 0x00:
                     expected_seq_num = 0x01
                 elif expected_seq_num == 0x01:
                     expected_seq_num = 0x00
+                print("3: "+str(expected_seq_num))
                 received_packets += 1
                 print(received_packets)
     print(f"Transmission ok, total received packets: {received_packets}")

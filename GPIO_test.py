@@ -53,7 +53,7 @@ def led_manager(color, estat):
 def active():
     while (SW1==True):
         led_manager(L1,On)
-        if (SW4==True):
+        if (SW7==True):
             led_manager(L1,Off)
             read_usb()
         elif (SW5==True):
@@ -72,7 +72,7 @@ def active():
 def read_usb():
     #AQUI cridar les funcions necesaries per a llegir del usb
     led_manager(L5,On)
-    while (SW4==True):
+    while (SW7==True):
         continue
     led_manager(L5,Off)
 

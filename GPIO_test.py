@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO #importem la llibreria correpsonent
-import time.sleep
+import time
 
 GPIO.setmode(GPIO.BCM) #establim com es fara referencia als pins de la RPi
 
@@ -126,6 +126,7 @@ while True:
     print(SW6)
     print("7")
     print(SW7)
+    time.sleep(2)
     if SW1==True:
         active()
 

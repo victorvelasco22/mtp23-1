@@ -51,28 +51,28 @@ def led_manager(color, estat):
 
 #definicio dels diferents estats necesaris per a fer el main.
 def active():
-    while (SW1==True):
+    while (GPIO.input(SW1)==True):
         led_manager(L_vermell,On)
-        if (SW7==True):
+        if (GPIO.input(SW7)==True):
             led_manager(L1,Off)
             read_usb()
-        elif (SW5==True):
+        elif (GPIO.input(SW5)==True):
             led_manager(L1,Off)
             write_usb()
-        elif (SW6==True & SW3==True):
+        elif (GPIO.input(SW6)==True & GPIO.input(SW3)==True):
             led_manager(L1,Off)
             network_mode()
-        elif (SW6==True & SW3==False & SW2==False):
+        elif (GPIO.input(SW6)==True & GPIO.input(SW3)==False & GPIO.input(SW2)==False):
             led_manager(L1,Off)
             rx_mode()
-        elif (SW6==True & SW3==False & SW2==True):
+        elif (GPIO.input(SW6)==True & GPIO.input(SW3)==False & GPIO.input(SW2)==True):
             led_manager(L_vermell,Off)
             tx_mode()
     
 def read_usb():
     #AQUI cridar les funcions necesaries per a llegir del usb
     led_manager(L5,On)
-    while (SW7==True):
+    while (GPIO.input(SW7)==True):
         continue
     led_manager(L5,Off)
 
@@ -80,7 +80,7 @@ def read_usb():
 def write_usb():
     #AQUI cridar les funcions necesaries per a escriure al usb
     led_manager(L4,On)
-    while (SW5==True):
+    while (GPIO.input(SW5)==True):
         continue
     led_manager(L4,Off)
 
@@ -89,7 +89,7 @@ def network_mode():
     #AQUI cridar les funcions necesaries per a executar el network mode
     led_manager(L3,On)
     led_manager(L2,On)
-    while (SW6==True):
+    while (GPIO.input(SW6)==True):
         continue
     led_manager(L3,Off)
     led_manager(L2,Off)
@@ -97,7 +97,7 @@ def network_mode():
 def tx_mode(): 
     #AQUI cridar les funcions necesaries per a executar el network mode
     led_manager(L3,On)
-    while (SW6==True):
+    while (GPIO.input(SW6)==True):
         continue
     led_manager(L3,Off)
 
@@ -105,7 +105,7 @@ def tx_mode():
 def rx_mode(): 
     #AQUI cridar les funcions necesaries per a executar el network mode
     led_manager(L2,On)
-    while (SW6==True):
+    while (GPIO.input(SW6)==True):
         continue
     led_manager(L2,Off)
 
@@ -113,19 +113,19 @@ def rx_mode():
 #estat de inici 
 while True:
     print("1")
-    print(SW1)
+    print(GPIO.input(SW1))
     print("2")
-    print(SW2)
+    print(GPIO.input(SW2))
     print("3")
-    print(SW3)
+    print(GPIO.input(SW3))
     print("4")
-    print(SW4)
+    print(GPIO.input(SW4))
     print("5")
-    print(SW5)
+    print(GPIO.input(SW5))
     print("6")
-    print(SW6)
+    print(GPIO.input(SW6))
     print("7")
-    print(SW7)
+    print(GPIO.input(SW7))
     time.sleep(2)
     if SW1==True:
         active()

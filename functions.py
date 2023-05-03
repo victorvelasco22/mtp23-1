@@ -57,6 +57,7 @@ def rx():
                 elif expected_seq_num == 0x01:
                     expected_seq_num = 0x00
                 received_packets += 1
+                print(received_packets)
     print(f"Transmission ok, total received packets: {received_packets}")
   except KeyboardInterrupt:
     print("powering down radio and exiting.")

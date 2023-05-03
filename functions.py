@@ -4,6 +4,7 @@ from subprocess import check_output, CalledProcessError
 import bz2
 import struct
 from pyrf24 import RF24
+import shutil
 
 EOF = b'\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF' 
 EOF1 = (0, b'\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF')
@@ -64,10 +65,13 @@ def rx():
     radio.power = False
   return eof, byte_txt
 
+def upload_to_usb():
+  shutil.copy("/home/rpi/textfile/output.txt", "/media/rpi/USB/output.txt")
+
 def write(byte_txt):
   decompressed_bytes = decompress(byte_txt)
-  with open("/media/rpi/USB/output.txt", mode="wb") as fichero:
-  #with open("/home/rpi/textfile/output.txt", mode="wb") as fichero:
+  #with open("/media/rpi/USB/output.txt", mode="wb") as fichero:
+  with open("/home/rpi/textfile/output.txt", mode="wb") as fichero:
       fichero.write(decompressed_bytes)
   fichero.close()
 
@@ -115,14 +119,18 @@ def tx(payload):
     print("powering down radio and exiting.")
     radio.power = False
 
+def download_from_usb():
+  for file in glob("/media/rpi/USB/*.txt"):
+    continue
+  shutil.copy(file, "/home/rpi/textfile/file.txt")
+  
+  
 #CHANGE FILE PATH/NAME
 #read the utf-16-le file
 def open_txt():
-  for file in glob("/media/rpi/USB/*.txt"):
-    continue
-  #for file in glob("/home/rpi/textfile/*.txt"):
+  #for file in glob("/media/rpi/USB/*.txt"):
   #  continue
-  with open(file, "rb") as f:
+  with open('/home/rpi/textfile/file.txt', "rb") as f:
         text = f.read()
   return text
 

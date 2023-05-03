@@ -42,13 +42,13 @@ def active():
     
 def read_usb():
     #AQUI cridar les funcions necesaries per a llegir del usb
-    #Llegir del usb i copiar-ho al directori corresponent de la funció "open_txt()"
+    download_from_usb()
     while (SW4==True):
         continue
 
 def write_usb():
     #AQUI cridar les funcions necesaries per a escriure al usb
-    #Llegir-ho del directori on ho guarda la funció "write()" i copiar-ho al pen
+    upload_to_usb()
     while (SW5==True):
         continue
 
@@ -59,23 +59,24 @@ def network_mode():
 
 def tx_mode(): 
     #AQUI cridar les funcions necesaries per a executar el tx mode
-    radio = RF24(22, 0)
+    #radio = RF24(22, 0)
 
-    if not radio.begin():
-        raise OSError("nRF24L01 hardware isn't responding")
+    #if not radio.begin():
+    #    raise OSError("nRF24L01 hardware isn't responding")
 
-    radio_setup(12345, False)
-
+    #radio_setup(12345, False)
+    radioSetupTX()
+    
     payload = frament_the_text(compress(open_txt()))
 
     ok = tx(payload)
 
     #encendre leds en funció del valor de "ok"
     if ok:
-        continue
+        print("OK")
         #encendre un led
     elif not ok:
-        continue
+        print("NOT OK")
         #encendre un altre led
 
     radio.power = False
@@ -85,21 +86,22 @@ def tx_mode():
 
 def rx_mode(): 
     #AQUI cridar les funcions necesaries per a executar el rx mode
-    radio = RF24(22, 0)
+    #radio = RF24(22, 0)
 
-    if not radio.begin():
-        raise OSError("nRF24L01 hardware isn't responding")
+    #if not radio.begin():
+    #    raise OSError("nRF24L01 hardware isn't responding")
 
-    radio_setup(12345, True)
-
+    #radio_setup(12345, True)
+    radioSetupRX()
+    
     reception = rx()
 
     #encendre leds en funció del valor de "reception[0]"
     if reception[0]:
-        continue
+        print("OK")
         #encendre un led
     elif not reception[0]:
-        continue
+        print("NOT OK")
         #encendre un altre led
 
     write(reception[1])

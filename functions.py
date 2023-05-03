@@ -100,7 +100,7 @@ def tx(payload):
         seq_num = 0x01
       elif seq_num == 0x01:
         seq_num = 0x00
-      #print(message)
+      print(message)
     #Sending EOF
     message = struct.pack("<B31s",seq_num,EOF)
     ok = radio.write(message)

@@ -3,6 +3,8 @@ from pyrf24 import RF24
 
 radioSetupTX()
 
+download_from_usb()
+
 payload = frament_the_text(compress(open_txt()))
 
 ok = tx(payload)

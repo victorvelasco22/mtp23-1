@@ -88,6 +88,7 @@ def tx(payload):
           packets_sent_failed += 1
       packets_sent_ok += 1
       #Changing sequence number
+      print(packets_sent_ok)
       if seq_num == 0x00:
         seq_num = 0x01
       elif seq_num == 0x01:

@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO #importem la llibreria correpsonent
+import time.sleep
 
 GPIO.setmode(GPIO.BCM) #establim com es fara referencia als pins de la RPi
 
@@ -111,6 +112,20 @@ def rx_mode():
 
 #estat de inici 
 while True:
+    print("1")
+    print(SW1)
+    print("2")
+    print(SW2)
+    print("3")
+    print(SW3)
+    print("4")
+    print(SW4)
+    print("5")
+    print(SW5)
+    print("6")
+    print(SW6)
+    print("7")
+    print(SW7)
     if SW1==True:
         active()
 

@@ -54,16 +54,16 @@ def active():
     while (GPIO.input(SW1)==True):
         led_manager(L_vermell,On)
         if (GPIO.input(SW7)==True):
-            led_manager(L1,Off)
+            led_manager(L_vermell,Off)
             read_usb()
         elif (GPIO.input(SW5)==True):
-            led_manager(L1,Off)
+            led_manager(L_vermell,Off)
             write_usb()
         elif (GPIO.input(SW6)==True & GPIO.input(SW3)==True):
-            led_manager(L1,Off)
+            led_manager(L_vermell,Off)
             network_mode()
         elif (GPIO.input(SW6)==True & GPIO.input(SW3)==False & GPIO.input(SW2)==False):
-            led_manager(L1,Off)
+            led_manager(L_vermell,Off)
             rx_mode()
         elif (GPIO.input(SW6)==True & GPIO.input(SW3)==False & GPIO.input(SW2)==True):
             led_manager(L_vermell,Off)

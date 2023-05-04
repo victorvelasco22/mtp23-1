@@ -53,28 +53,31 @@ def led_manager(color, estat):
 def active():
     while (GPIO.input(SW1)==True):
         led_manager(L_vermell,On)
-        print("obre led vermell")
-        print(GPIO.input(SW6))
         if (GPIO.input(SW7)==True):
             led_manager(L_vermell,Off)
             print("tenca led vermell")
             read_usb()
+            print("obre led vermell")
         elif (GPIO.input(SW5)==True):
             led_manager(L_vermell,Off)
             print("tenca led vermell")
             write_usb()
+            print("obre led vermell")
         elif (GPIO.input(SW6)==True and GPIO.input(SW3)==True):
             led_manager(L_vermell,Off)
             print("tenca led vermell")
             network_mode()
+            print("obre led vermell")
         elif (GPIO.input(SW6)==True and GPIO.input(SW3)==False and GPIO.input(SW2)==False):
             led_manager(L_vermell,Off)
             print("tenca led vermell")
             rx_mode()
+            print("obre led vermell")
         elif (GPIO.input(SW6)==True and GPIO.input(SW3)==False and GPIO.input(SW2)==True):
             led_manager(L_vermell,Off)
             print("tenca led vermell")
             tx_mode()
+            print("obre led vermell")
     
 def read_usb():
     #AQUI cridar les funcions necesaries per a llegir del usb
@@ -120,7 +123,6 @@ def tx_mode():
 
 
 def rx_mode(): 
-    print(GPIO.input(SW6))
     #AQUI cridar les funcions necesaries per a executar el network mode
     led_manager(L2,On)
     print("obre led2")

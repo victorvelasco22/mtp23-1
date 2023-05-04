@@ -72,7 +72,7 @@ def active():
             rx_mode()
         elif (GPIO.input(SW6)==True & GPIO.input(SW3)==False & GPIO.input(SW2)==True):
             led_manager(L_vermell,Off)
-             print("tenca led vermell")
+            print("tenca led vermell")
             tx_mode()
     
 def read_usb():

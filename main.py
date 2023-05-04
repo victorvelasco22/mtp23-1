@@ -17,16 +17,16 @@ SW6=16 #go/stop
 SW7=12 #read usb
 
 
-L_vermell=2 #active
-L2=3 #rx if L2 & L3 NM
-L3=27 #tx if L2 & L3 NM
-L4=24 #write usb
-L5=23 #read usb
+L1=2    #RED, active
+L2=3    #YELLOW, rx if L2 & L3 NM
+L3=27   #GREEN, tx if L2 & L3 NM
+L4=24   #BLUE, write usb
+L5=23   #BLUE, read usb
 
 On=True
 Off=False
 
-GPIO.setup(L_vermell, GPIO.OUT)
+GPIO.setup(L1, GPIO.OUT)
 GPIO.setup(L2, GPIO.OUT)
 GPIO.setup(L3, GPIO.OUT)
 GPIO.setup(L4, GPIO.OUT)
@@ -42,7 +42,7 @@ GPIO.setup(SW6, GPIO.IN)
 GPIO.setup(SW7, GPIO.IN)
 
 #tots els leds apagats al iniciar el programa
-GPIO.output(L_vermell, GPIO.LOW)
+GPIO.output(L1, GPIO.LOW)
 GPIO.output(L2, GPIO.LOW)
 GPIO.output(L3, GPIO.LOW)
 GPIO.output(L4, GPIO.LOW)
@@ -52,25 +52,25 @@ GPIO.output(L5, GPIO.LOW)
 def active():
     while (GPIO.input(SW1)==True):
         if (GPIO.input(SW7)==True):
-            led_manager(L_vermell,Off)
+            led_manager(L1,Off)
             read_usb()
-            led_manager(L_vermell,On)
+            led_manager(L1,On)
         elif (GPIO.input(SW5)==True):
-            led_manager(L_vermell,Off)
+            led_manager(L1,Off)
             write_usb()
-            led_manager(L_vermell,On)
+            led_manager(L1,On)
         elif (GPIO.input(SW6)==True and GPIO.input(SW3)==True):
-            led_manager(L_vermell,Off)
+            led_manager(L1,Off)
             network_mode()
-            led_manager(L_vermell,On)
+            led_manager(L1,On)
         elif (GPIO.input(SW6)==True and GPIO.input(SW3)==False and GPIO.input(SW2)==False):
-            led_manager(L_vermell,Off)
+            led_manager(L1,Off)
             rx_mode()
-            led_manager(L_vermell,On)
+            led_manager(L1,On)
         elif (GPIO.input(SW6)==True and GPIO.input(SW3)==False and GPIO.input(SW2)==True):
-            led_manager(L_vermell,Off)
+            led_manager(L1,Off)
             tx_mode()
-            led_manager(L_vermell,On)
+            led_manager(L1,On)
     
 def read_usb():
     #AQUI cridar les funcions necesaries per a llegir del usb
@@ -162,6 +162,6 @@ def rx_mode():
 while True:
     sleep(2)
     if GPIO.input(SW1)==True:
-        led_manager(L_vermell,On)
+        led_manager(L1,On)
         active()
-        led_manager(L_vermell,Off)
+        led_manager(L1,Off)

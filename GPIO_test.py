@@ -54,6 +54,7 @@ def active():
     while (GPIO.input(SW1)==True):
         led_manager(L_vermell,On)
         print("obre led vermell")
+        print(GPIO.input(SW6))
         if (GPIO.input(SW7)==True):
             led_manager(L_vermell,Off)
             print("tenca led vermell")
@@ -119,6 +120,7 @@ def tx_mode():
 
 
 def rx_mode(): 
+    print(GPIO.input(SW6))
     #AQUI cridar les funcions necesaries per a executar el network mode
     led_manager(L2,On)
     print("obre led2")

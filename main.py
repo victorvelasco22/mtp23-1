@@ -23,6 +23,14 @@ L3=27 #tx if L2 & L3 NM
 L4=24 #write usb
 L5=23 #read usb
 
+On=True
+Off=False
+
+GPIO.setup(L_vermell, GPIO.OUT)
+GPIO.setup(L2, GPIO.OUT)
+GPIO.setup(L3, GPIO.OUT)
+GPIO.setup(L4, GPIO.OUT)
+GPIO.setup(L5, GPIO.OUT)
 
 #establim els pins conectats als switches com a inputs
 GPIO.setup(SW1, GPIO.IN)

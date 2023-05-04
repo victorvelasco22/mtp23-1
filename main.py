@@ -128,11 +128,11 @@ def tx_mode():
     ok = tx(payload)
 
     #encendre leds en funció del valor de "ok"
-#    if ok:
-#        print("OK")
+    if ok:
+        print("OK")
 #        #encendre un led
-#    elif not ok:
-#        print("NOT OK")
+    elif not ok:
+        print("NOT OK")
 #        #encendre un altre led
 
     radioPowerOff()

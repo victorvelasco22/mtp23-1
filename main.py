@@ -29,8 +29,8 @@ GPIO.setup(SW7, GPIO.IN)
 L1=2   #RED, active
 L2=3   #YELLOW, rx if L2 & L3 NM
 L3=27  #GREEN, tx if L2 & L3 NM
-L4=24  #BLUE, write usb
-L5=23  #BLUE, read usb
+L4=24  #BLUE, read or write usb
+L5=23  #BLUE, Network Mode
 
 GPIO.setup(L1, GPIO.OUT)
 GPIO.setup(L2, GPIO.OUT)
@@ -75,12 +75,12 @@ def active():
     
 def read_usb():
     #AQUI cridar les funcions necesaries per a llegir del usb
-    led_manager(L5,On)
+    led_manager(L4,On)
     download_from_usb()
     while (GPIO.input(SW5)==True):
         sleep(0.2)
         continue
-    led_manager(L5,Off)
+    led_manager(L4,Off)
 
 def write_usb():
     led_manager(L4,On)
@@ -93,15 +93,18 @@ def write_usb():
     led_manager(L4,Off)
 
 def network_mode():
-    led_manager(L2,On)
+    
     led_manager(L3,On)
-
+    led_manager(L5,On)
     #AQUI cridar les funcions necesaries per a executar el network mode
+    
+    led_manager(L2,On)
     while (GPIO.input(SW4)==True):
         sleep(0.2)
         continue
     led_manager(L2,Off)
     led_manager(L3,Off)
+    led_manager(L5,Off)
 
 def tx_mode():
     led_manager(L3,On)
@@ -127,15 +130,15 @@ def tx_mode():
 #        #encendre un altre led
 
     radioPowerOff()
-    
+    led_manager(L2,On)
     while (GPIO.input(SW4)==True):
         sleep(0.2)
         continue
+    led_manager(L2,Off)
     led_manager(L3,Off)
-
         
 def rx_mode(): 
-    led_manager(L2,On)
+    led_manager(L3,On)
     #AQUI cridar les funcions necesaries per a executar el rx mode
     #radio = RF24(22, 0)
 
@@ -158,10 +161,12 @@ def rx_mode():
     write(reception[1])
 
     radioPowerOff()
+    led_manager(L2,On)
     while (GPIO.input(SW4)==True):
         sleep(0.2)
         continue
     led_manager(L2,Off)
+    led_manager(L3,Off)
 
         
 #estat de inici 

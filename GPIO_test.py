@@ -4,10 +4,10 @@ import time
 GPIO.setmode(GPIO.BCM) #establim com es fara referencia als pins de la RPi
 
 L_vermell=2
-L2=27
+L2=3
 L3=22
-L4=9
-L5=11
+L4=23
+L5=24
 
 SW1=13
 SW2=19

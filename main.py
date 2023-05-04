@@ -79,20 +79,24 @@ def read_usb():
     led_manager(L4,On)
     os.system('sudo mount /dev/sda1 /media/rpi/USB')
     download_from_usb()
+    led_manager(L2,On)
     while (GPIO.input(SW5)==True):
         sleep(0.2)
         continue
     led_manager(L4,Off)
+    led_manager(L2,Off)
 
 def write_usb():
     led_manager(L4,On)
     os.system('sudo mount /dev/sda1 /media/rpi/USB')
     #AQUI cridar les funcions necesaries per a escriure al usb
     upload_to_usb()
+    led_manager(L2,On)
     while (GPIO.input(SW6)==True):
         sleep(0.2)
         continue
     led_manager(L4,Off)
+    led_manager(L2,Off)
 
 def network_mode():
     

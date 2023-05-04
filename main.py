@@ -51,6 +51,7 @@ GPIO.output(L5, GPIO.LOW)
 #definicio dels diferents estats necesaris per a fer el main.
 def active():
     while (GPIO.input(SW1)==True):
+        sleep(0.2)
         if (GPIO.input(SW5)==True): #Read file from USB
             led_manager(L1,Off)
             read_usb()
@@ -76,7 +77,8 @@ def read_usb():
     #AQUI cridar les funcions necesaries per a llegir del usb
     led_manager(L5,On)
     download_from_usb()
-    while (GPIO.input(SW7)==True):
+    while (GPIO.input(SW5)==True):
+        sleep(0.2)
         continue
     led_manager(L5,Off)
 
@@ -85,7 +87,8 @@ def write_usb():
 
     #AQUI cridar les funcions necesaries per a escriure al usb
     upload_to_usb()
-    while (GPIO.input(SW5)==True):
+    while (GPIO.input(SW6)==True):
+        sleep(0.2)
         continue
     led_manager(L4,Off)
 
@@ -94,7 +97,8 @@ def network_mode():
     led_manager(L3,On)
 
     #AQUI cridar les funcions necesaries per a executar el network mode
-    while (GPIO.input(SW6)==True):
+    while (GPIO.input(SW4)==True):
+        sleep(0.2)
         continue
     led_manager(L2,Off)
     led_manager(L3,Off)
@@ -124,7 +128,8 @@ def tx_mode():
 
     radioPowerOff()
     
-    while (GPIO.input(SW6)==True):
+    while (GPIO.input(SW4)==True):
+        sleep(0.2)
         continue
     led_manager(L3,Off)
 
@@ -153,7 +158,8 @@ def rx_mode():
     write(reception[1])
 
     radioPowerOff()
-    while (GPIO.input(SW6)==True):
+    while (GPIO.input(SW4)==True):
+        sleep(0.2)
         continue
     led_manager(L2,Off)
 

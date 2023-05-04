@@ -63,15 +63,15 @@ def active():
             led_manager(L_vermell,Off)
             print("tenca led vermell")
             write_usb()
-        elif (GPIO.input(SW6)==True & GPIO.input(SW3)==True):
+        elif (GPIO.input(SW6)==True and GPIO.input(SW3)==True):
             led_manager(L_vermell,Off)
             print("tenca led vermell")
             network_mode()
-        elif (GPIO.input(SW6)==True & GPIO.input(SW3)==False & GPIO.input(SW2)==False):
+        elif (GPIO.input(SW6)==True and GPIO.input(SW3)==False and GPIO.input(SW2)==False):
             led_manager(L_vermell,Off)
             print("tenca led vermell")
             rx_mode()
-        elif (GPIO.input(SW6)==True & GPIO.input(SW3)==False & GPIO.input(SW2)==True):
+        elif (GPIO.input(SW6)==True and GPIO.input(SW3)==False and GPIO.input(SW2)==True):
             led_manager(L_vermell,Off)
             print("tenca led vermell")
             tx_mode()

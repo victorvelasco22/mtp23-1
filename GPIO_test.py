@@ -53,61 +53,79 @@ def led_manager(color, estat):
 def active():
     while (GPIO.input(SW1)==True):
         led_manager(L_vermell,On)
+        print("obre led vermell")
         if (GPIO.input(SW7)==True):
             led_manager(L_vermell,Off)
+            print("tenca led vermell")
             read_usb()
         elif (GPIO.input(SW5)==True):
             led_manager(L_vermell,Off)
+            print("tenca led vermell")
             write_usb()
         elif (GPIO.input(SW6)==True & GPIO.input(SW3)==True):
             led_manager(L_vermell,Off)
+            print("tenca led vermell")
             network_mode()
         elif (GPIO.input(SW6)==True & GPIO.input(SW3)==False & GPIO.input(SW2)==False):
             led_manager(L_vermell,Off)
+            print("tenca led vermell")
             rx_mode()
         elif (GPIO.input(SW6)==True & GPIO.input(SW3)==False & GPIO.input(SW2)==True):
             led_manager(L_vermell,Off)
+             print("tenca led vermell")
             tx_mode()
     
 def read_usb():
     #AQUI cridar les funcions necesaries per a llegir del usb
     led_manager(L5,On)
+    print("obre led5")
     while (GPIO.input(SW7)==True):
         continue
     led_manager(L5,Off)
+    print("tenca led5")
 
 
 def write_usb():
     #AQUI cridar les funcions necesaries per a escriure al usb
     led_manager(L4,On)
+    print("obre led4")
     while (GPIO.input(SW5)==True):
         continue
     led_manager(L4,Off)
+    print("tenca led4")
 
 
 def network_mode():
     #AQUI cridar les funcions necesaries per a executar el network mode
     led_manager(L3,On)
+    print("obre led3")
     led_manager(L2,On)
+    print("obre led2")
     while (GPIO.input(SW6)==True):
         continue
     led_manager(L3,Off)
+    print("tenca led3")
     led_manager(L2,Off)
+    print("tenca led2")
 
 def tx_mode(): 
     #AQUI cridar les funcions necesaries per a executar el network mode
     led_manager(L3,On)
+    print("obre led3)
     while (GPIO.input(SW6)==True):
         continue
     led_manager(L3,Off)
+    print("tenca Led3")
 
 
 def rx_mode(): 
     #AQUI cridar les funcions necesaries per a executar el network mode
     led_manager(L2,On)
+    print("obre led2")
     while (GPIO.input(SW6)==True):
         continue
     led_manager(L2,Off)
+    print("tenca led2")
 
 
 #estat de inici 

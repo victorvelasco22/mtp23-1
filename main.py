@@ -122,7 +122,7 @@ def tx_mode():
 #        print("NOT OK")
 #        #encendre un altre led
 
-    radio.power = False
+    radioPowerOff()
     
     while (GPIO.input(SW6)==True):
         continue
@@ -152,7 +152,7 @@ def rx_mode():
 
     write(reception[1])
 
-    radio.power = False
+    radioPowerOff()
     while (GPIO.input(SW6)==True):
         continue
     led_manager(L2,Off)

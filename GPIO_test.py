@@ -5,9 +5,9 @@ GPIO.setmode(GPIO.BCM) #establim com es fara referencia als pins de la RPi
 
 L_vermell=2
 L2=3
-L3=22
-L4=23
-L5=24
+L3=27
+L4=24
+L5=23
 
 SW1=13
 SW2=19

@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO #importem la llibreria correpsonent
 from functions import *
 from pyrf24 import RF24
 from time import sleep
+import os
 
 radio = RF24(22, 0)
 
@@ -76,6 +77,7 @@ def active():
 def read_usb():
     #AQUI cridar les funcions necesaries per a llegir del usb
     led_manager(L4,On)
+    os.system('sudo mount /dev/sda1 /media/rpi/USB')
     download_from_usb()
     while (GPIO.input(SW5)==True):
         sleep(0.2)
@@ -84,7 +86,7 @@ def read_usb():
 
 def write_usb():
     led_manager(L4,On)
-
+    os.system('sudo mount /dev/sda1 /media/rpi/USB')
     #AQUI cridar les funcions necesaries per a escriure al usb
     upload_to_usb()
     while (GPIO.input(SW6)==True):

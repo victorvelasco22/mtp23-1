@@ -9,12 +9,12 @@ GPIO.setmode(GPIO.BCM) #establim com es fara referencia als pins de la RPi
 
 #Switch Pinout definition (OFF/ON) & Setup
 SW1=13 #StandBy/Active
-SW2=19 #Rx/Tx
-SW3=26 #IndividualMode/NetworkMode
-SW4=21 
-SW5=20 #-/WriteUSB
-SW6=16 #Stop/Go
-SW7=12 #-/ReadUSB
+SW2=19 #IndividualMode/NetworkMode
+SW3=26 #Rx/Tx
+SW4=21 #Stop/Go
+SW5=20 #-/ReadUSB
+SW6=16 #-/WriteUSB
+SW7=12 
 
 GPIO.setup(SW1, GPIO.IN)
 GPIO.setup(SW2, GPIO.IN)
@@ -51,23 +51,23 @@ GPIO.output(L5, GPIO.LOW)
 #definicio dels diferents estats necesaris per a fer el main.
 def active():
     while (GPIO.input(SW1)==True):
-        if (GPIO.input(SW7)==True): #Read file from USB
+        if (GPIO.input(SW5)==True): #Read file from USB
             led_manager(L1,Off)
             read_usb()
             led_manager(L1,On)
-        elif (GPIO.input(SW5)==True): #Write file to USB
+        elif (GPIO.input(SW6)==True): #Write file to USB
             led_manager(L1,Off)
             write_usb()
             led_manager(L1,On)
-        elif (GPIO.input(SW6)==True and GPIO.input(SW3)==True): #Nerwork Mode
+        elif (GPIO.input(SW4)==True and GPIO.input(SW2)==True): #Nerwork Mode
             led_manager(L1,Off)
             network_mode()
             led_manager(L1,On)
-        elif (GPIO.input(SW6)==True and GPIO.input(SW3)==False and GPIO.input(SW2)==False): #Individual Mode Rx
+        elif (GPIO.input(SW4)==True and GPIO.input(SW2)==False and GPIO.input(SW3)==False): #Individual Mode Rx
             led_manager(L1,Off)
             rx_mode()
             led_manager(L1,On)
-        elif (GPIO.input(SW6)==True and GPIO.input(SW3)==False and GPIO.input(SW2)==True): #Individual Mode Tx
+        elif (GPIO.input(SW4)==True and GPIO.input(SW2)==False and GPIO.input(SW3)==True): #Individual Mode Tx
             led_manager(L1,Off)
             tx_mode()
             led_manager(L1,On)

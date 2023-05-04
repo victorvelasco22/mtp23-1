@@ -111,7 +111,7 @@ def network_mode():
 def tx_mode(): 
     #AQUI cridar les funcions necesaries per a executar el network mode
     led_manager(L3,On)
-    print("obre led3)
+    print("obre led3")
     while (GPIO.input(SW6)==True):
         continue
     led_manager(L3,Off)

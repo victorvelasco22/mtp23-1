@@ -127,6 +127,6 @@ while True:
     print("7")
     print(GPIO.input(SW7))
     time.sleep(2)
-    if SW1==True:
+    if GPIO.input(SW1)==True:
         active()
 

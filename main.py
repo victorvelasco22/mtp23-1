@@ -7,32 +7,15 @@ radio = RF24(22, 0)
 
 GPIO.setmode(GPIO.BCM) #establim com es fara referencia als pins de la RPi
 
-#establim com es fara referencia als pins de la RPi
-SW1=13 #active/stand by
-SW2=19 #tx/rx
-SW3=26 #fm/nm
+#Switch Pinout definition (OFF/ON) & Setup
+SW1=13 #StandBy/Active
+SW2=19 #Rx/Tx
+SW3=26 #IndividualMode/NetworkMode
 SW4=21 
-SW5=20 #write usb
-SW6=16 #go/stop
-SW7=12 #read usb
+SW5=20 #-/WriteUSB
+SW6=16 #Stop/Go
+SW7=12 #-/ReadUSB
 
-
-L1=2    #RED, active
-L2=3    #YELLOW, rx if L2 & L3 NM
-L3=27   #GREEN, tx if L2 & L3 NM
-L4=24   #BLUE, write usb
-L5=23   #BLUE, read usb
-
-On=True
-Off=False
-
-GPIO.setup(L1, GPIO.OUT)
-GPIO.setup(L2, GPIO.OUT)
-GPIO.setup(L3, GPIO.OUT)
-GPIO.setup(L4, GPIO.OUT)
-GPIO.setup(L5, GPIO.OUT)
-
-#establim els pins conectats als switches com a inputs
 GPIO.setup(SW1, GPIO.IN)
 GPIO.setup(SW2, GPIO.IN)
 GPIO.setup(SW3, GPIO.IN)
@@ -40,6 +23,23 @@ GPIO.setup(SW4, GPIO.IN)
 GPIO.setup(SW5, GPIO.IN)
 GPIO.setup(SW6, GPIO.IN)
 GPIO.setup(SW7, GPIO.IN)
+
+
+#LED Pinout definition & Setup
+L1=2   #RED, active
+L2=3   #YELLOW, rx if L2 & L3 NM
+L3=27  #GREEN, tx if L2 & L3 NM
+L4=24  #BLUE, write usb
+L5=23  #BLUE, read usb
+
+GPIO.setup(L1, GPIO.OUT)
+GPIO.setup(L2, GPIO.OUT)
+GPIO.setup(L3, GPIO.OUT)
+GPIO.setup(L4, GPIO.OUT)
+GPIO.setup(L5, GPIO.OUT)
+
+On=True
+Off=False
 
 #tots els leds apagats al iniciar el programa
 GPIO.output(L1, GPIO.LOW)
@@ -51,23 +51,23 @@ GPIO.output(L5, GPIO.LOW)
 #definicio dels diferents estats necesaris per a fer el main.
 def active():
     while (GPIO.input(SW1)==True):
-        if (GPIO.input(SW7)==True):
+        if (GPIO.input(SW7)==True): #Read file from USB
             led_manager(L1,Off)
             read_usb()
             led_manager(L1,On)
-        elif (GPIO.input(SW5)==True):
+        elif (GPIO.input(SW5)==True): #Write file to USB
             led_manager(L1,Off)
             write_usb()
             led_manager(L1,On)
-        elif (GPIO.input(SW6)==True and GPIO.input(SW3)==True):
+        elif (GPIO.input(SW6)==True and GPIO.input(SW3)==True): #Nerwork Mode
             led_manager(L1,Off)
             network_mode()
             led_manager(L1,On)
-        elif (GPIO.input(SW6)==True and GPIO.input(SW3)==False and GPIO.input(SW2)==False):
+        elif (GPIO.input(SW6)==True and GPIO.input(SW3)==False and GPIO.input(SW2)==False): #Individual Mode Rx
             led_manager(L1,Off)
             rx_mode()
             led_manager(L1,On)
-        elif (GPIO.input(SW6)==True and GPIO.input(SW3)==False and GPIO.input(SW2)==True):
+        elif (GPIO.input(SW6)==True and GPIO.input(SW3)==False and GPIO.input(SW2)==True): #Individual Mode Tx
             led_manager(L1,Off)
             tx_mode()
             led_manager(L1,On)

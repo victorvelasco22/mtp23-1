@@ -61,7 +61,7 @@ def rx():
                     expected_seq_num = 0x00
                 received_packets += 1
                 print(received_packets)
-                print(byte_txt)
+                #print(byte_txt)
     print(f"Transmission ok, total received packets: {received_packets}")
   except KeyboardInterrupt:
     print("powering down radio and exiting.")
@@ -102,7 +102,7 @@ def tx(payload):
         seq_num = 0x01
       elif seq_num == 0x01:
         seq_num = 0x00
-      print(message)
+      #print(message)
     #Sending EOF
     message = struct.pack("<B31s",seq_num,EOF)
     ok = radio.write(message)

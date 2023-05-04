@@ -5,6 +5,8 @@
 ``$python -m pip install pyrf24``\
 ``$sudo apt install git``\
 ``$git clone https://github.com/victorvelasco22/mtp23/``\
+spi
+
 ``$touch output.txt``\
 ``$nano helloworld.txt`` -> and write the text to be sent
 

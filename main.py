@@ -6,8 +6,6 @@ import os
 
 radio = RF24(22, 0)
 
-payload = []
-
 GPIO.setmode(GPIO.BCM) #establim com es fara referencia als pins de la RPi
 
 #Switch Pinout definition (OFF/ON) & Setup
@@ -142,6 +140,8 @@ def tx_mode():
     #radio_setup(12345, False)
     radioSetupTX()
 
+    payload = frament_the_text(compress(open_txt()))
+    
     ok = tx(payload)
 
     #encendre leds en funció del valor de "ok"

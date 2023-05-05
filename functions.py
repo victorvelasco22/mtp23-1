@@ -128,8 +128,6 @@ def download_from_usb():
     continue
   shutil.copy(file, "/home/rpi/textfile/file.txt")
   print("Downloaded successfully")
-  global payload
-  payload = frament_the_text(compress(open_txt()))
   
 #CHANGE FILE PATH/NAME
 #read the utf-16-le file

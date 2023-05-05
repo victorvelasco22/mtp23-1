@@ -77,7 +77,14 @@ def active():
 def read_usb():
     #AQUI cridar les funcions necesaries per a llegir del usb
     led_manager(L4,On)
-    os.system('sudo mount /dev/sda1 /media/rpi/USB')
+    if os.path.exists(/dev/sda1):
+        os.system('sudo mount /dev/sda1 /media/rpi/USB')
+    elif os.path.exists(/dev/sdb1):
+        os.system('sudo mount /dev/sdb1 /media/rpi/USB')
+    elif os.path.exists(/dev/sdc1):
+        os.system('sudo mount /dev/sdc1 /media/rpi/USB')
+    elif os.path.exists(/dev/sdd1):
+        os.system('sudo mount /dev/sdd1 /media/rpi/USB')
     download_from_usb()
     led_manager(L2,On)
     os.system('sudo umount /media/rpi/USB')
@@ -89,7 +96,14 @@ def read_usb():
 
 def write_usb():
     led_manager(L4,On)
-    os.system('sudo mount /dev/sda1 /media/rpi/USB')
+    if os.path.exists(/dev/sda1):
+        os.system('sudo mount /dev/sda1 /media/rpi/USB')
+    elif os.path.exists(/dev/sdb1):
+        os.system('sudo mount /dev/sdb1 /media/rpi/USB')
+    elif os.path.exists(/dev/sdc1):
+        os.system('sudo mount /dev/sdc1 /media/rpi/USB')
+    elif os.path.exists(/dev/sdd1):
+        os.system('sudo mount /dev/sdd1 /media/rpi/USB')
     #AQUI cridar les funcions necesaries per a escriure al usb
     upload_to_usb()
     led_manager(L2,On)

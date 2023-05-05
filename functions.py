@@ -28,7 +28,7 @@ def radioSetupTX():
   if not radio.begin():
       raise OSError("nRF24L01 hardware isn't responding")
   radio.setPALevel(2,1)
-  radio.setRetries(10,15)
+  radio.setRetries(2,15)
   radio.openWritingPipe(12345)
   radio.channel = 50
   radio.listen = False
@@ -128,6 +128,7 @@ def download_from_usb():
     continue
   shutil.copy(file, "/home/rpi/textfile/file.txt")
   print("Downloaded successfully")
+  payload = frament_the_text(compress(open_txt()))
   
 #CHANGE FILE PATH/NAME
 #read the utf-16-le file

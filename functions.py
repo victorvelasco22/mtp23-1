@@ -23,6 +23,7 @@ def radioSetupRX():
   radio.channel = 50
   radio.listen = True
   radio.print_pretty_details()
+  radio.setDataRate(2)
 
 def radioSetupTX():
   if not radio.begin():
@@ -34,6 +35,7 @@ def radioSetupTX():
   radio.listen = False
   radio.setPayloadSize(struct.calcsize("<B31s"))
   radio.print_pretty_details()
+  radio.setDataRate(2)
 
 def radioPowerOff():
   radio.power = False

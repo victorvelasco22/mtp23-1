@@ -130,6 +130,7 @@ def download_from_usb():
     continue
   shutil.copy(file, "/home/rpi/textfile/file.txt")
   print("Downloaded successfully")
+  return file
   
 #CHANGE FILE PATH/NAME
 #read the utf-16-le file

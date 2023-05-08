@@ -70,8 +70,8 @@ def rx():
     radio.power = False
   return eof, byte_txt
 
-def upload_to_usb():
-  shutil.copy("/home/rpi/textfile/output.txt", "/media/rpi/USB/output.txt")
+def upload_to_usb(filename):
+  shutil.copy("/home/rpi/textfile/output.txt", "/media/rpi/USB/"+str(filename)+".txt")
   print("Uploaded successfully")
 
 def write(byte_txt):

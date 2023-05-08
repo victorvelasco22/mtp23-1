@@ -64,6 +64,7 @@ def active():
             led_manager(L1,On)
         elif (GPIO.input(SW4)==True and GPIO.input(SW2)==True): #Nerwork Mode
             led_manager(L1,Off)
+            #pensar interruptor primer transmisor
             network_mode()
             led_manager(L1,On)
         elif (GPIO.input(SW4)==True and GPIO.input(SW2)==False and GPIO.input(SW3)==False): #Individual Mode Rx
@@ -142,7 +143,7 @@ def tx_mode(filename, bytes_compressed):
     #radio_setup(12345, False)
     radioSetupTX()
     
-    ok = tx(frament_the_text(bytes(filename)))
+    ok = tx(frament_the_text(bytes(filename,'utf-16-le')))
     
     payload = frament_the_text(bytes_compressed)
     

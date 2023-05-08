@@ -131,6 +131,7 @@ def download_from_usb():
   shutil.copy(file, "/home/rpi/textfile/file.txt")
   print("Downloaded successfully")
   compressed_bytes = compress(open_txt())
+  print("Compression successfully")
   return file, compressed_bytes
   
 #CHANGE FILE PATH/NAME

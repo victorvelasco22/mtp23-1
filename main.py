@@ -85,7 +85,7 @@ def read_usb():
         os.system('sudo mount /dev/sdc1 /media/rpi/USB')
     elif os.path.exists('/dev/sdd1'):
         os.system('sudo mount /dev/sdd1 /media/rpi/USB')
-    download_from_usb()
+    filename = download_from_usb()
     led_manager(L2,On)
     os.system('sudo umount /media/rpi/USB')
     while (GPIO.input(SW5)==True):
@@ -139,7 +139,7 @@ def tx_mode():
 
     #radio_setup(12345, False)
     radioSetupTX()
-
+    
     payload = frament_the_text(compress(open_txt()))
     
     ok = tx(payload)

@@ -3,7 +3,7 @@ from glob import glob
 from subprocess import check_output, CalledProcessError
 import bz2
 import struct
-from pyrf24 import RF24
+from pyrf24 import RF24, rf24
 import shutil
 
 EOF = b'\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF' 

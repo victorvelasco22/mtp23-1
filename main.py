@@ -51,11 +51,12 @@ GPIO.output(L5, GPIO.LOW)
 
 #definicio dels diferents estats necesaris per a fer el main.
 def active():
+    bytes_compressed = b''
     while (GPIO.input(SW1)==True):
         sleep(0.2)
         if (GPIO.input(SW5)==True): #Read file from USB
             led_manager(L1,Off)
-            read_usb()
+            bytes_compressed = read_usb()
             led_manager(L1,On)
         elif (GPIO.input(SW6)==True): #Write file to USB
             led_manager(L1,Off)
@@ -71,7 +72,7 @@ def active():
             led_manager(L1,On)
         elif (GPIO.input(SW4)==True and GPIO.input(SW2)==False and GPIO.input(SW3)==True): #Individual Mode Tx
             led_manager(L1,Off)
-            tx_mode()
+            tx_mode(bytes_compressed)
             led_manager(L1,On)
     
 def read_usb():
@@ -85,7 +86,7 @@ def read_usb():
         os.system('sudo mount /dev/sdc1 /media/rpi/USB')
     elif os.path.exists('/dev/sdd1'):
         os.system('sudo mount /dev/sdd1 /media/rpi/USB')
-    filename = download_from_usb()
+    filename, bytes_compressed = download_from_usb()
     led_manager(L2,On)
     os.system('sudo umount /media/rpi/USB')
     while (GPIO.input(SW5)==True):
@@ -93,6 +94,7 @@ def read_usb():
         continue
     led_manager(L4,Off)
     led_manager(L2,Off)
+    return bytes_compressed
     
 
 def write_usb():
@@ -129,7 +131,7 @@ def network_mode():
     led_manager(L3,Off)
     led_manager(L5,Off)
 
-def tx_mode():
+def tx_mode(bytes_compressed):
     led_manager(L3,On)
     #AQUI cridar les funcions necesaries per a executar el tx mode
     #radio = RF24(22, 0)
@@ -140,7 +142,7 @@ def tx_mode():
     #radio_setup(12345, False)
     radioSetupTX()
     
-    payload = frament_the_text(compress(open_txt()))
+    payload = frament_the_text(bytes_compressed)
     
     ok = tx(payload)
 

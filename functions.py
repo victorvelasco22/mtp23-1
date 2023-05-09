@@ -75,7 +75,8 @@ def rx():
 def upload_to_usb(filename):
   #path = str(filename,'utf-16-le').split("/")
   name = str(filename,'utf-16-le').replace("TX",RX)
-  shutil.copy("/home/rpi/textfile/output.txt", "/media/rpi/USB/"+name)
+  shutil.copy("/home/rpi/textfile/output.txt", "/media/rpi/USB/output.txt")
+  #shutil.copy("/home/rpi/textfile/output.txt", "/media/rpi/USB/"+name)
   print("Uploaded successfully")
 
 def write(byte_txt):

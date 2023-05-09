@@ -6,7 +6,7 @@ import os
 
 radio = RF24(22, 0)
 filename = ''
-filename_bytes = b''
+filename_bytes = (False, b'')
 
 GPIO.setmode(GPIO.BCM) #establim com es fara referencia als pins de la RPi
 

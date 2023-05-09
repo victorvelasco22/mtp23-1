@@ -143,8 +143,8 @@ def tx_mode(filename, bytes_compressed):
     #radio_setup(12345, False)
     radioSetupTX()
     
-    ok = tx(frament_the_text(bytes(filename,'utf-16-le')))
-    sleep(0.1)
+    #ok = tx(frament_the_text(bytes(filename,'utf-16-le')))
+    #sleep(0.1)
     payload = frament_the_text(bytes_compressed)
     
     ok = tx(payload)
@@ -176,8 +176,8 @@ def rx_mode():
     #radio_setup(12345, True)
     radioSetupRX()
     
-    filename_bytes = rx()
-    sleep(0.1)
+    #filename_bytes = rx()
+    #sleep(0.1)
     reception = rx()
 
     #encendre leds en funció del valor de "reception[0]"

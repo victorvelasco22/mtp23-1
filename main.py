@@ -111,7 +111,7 @@ def write_usb():
     elif os.path.exists('/dev/sdd1'):
         os.system('sudo mount /dev/sdd1 /media/rpi/USB')
     #AQUI cridar les funcions necesaries per a escriure al usb
-    print(filename_bytes[1])
+    
     upload_to_usb(filename_bytes[1])
     led_manager(L2,On)
     os.system('sudo umount /media/rpi/USB')
@@ -180,6 +180,7 @@ def rx_mode():
     radioSetupRX()
     
     filename_bytes = rx()
+    print(filename_bytes)
     sleep(0.1)
     reception = rx()
 

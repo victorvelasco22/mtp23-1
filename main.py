@@ -150,17 +150,17 @@ def tx_mode(filename, compressed_bytes_batches):
     
     tx(frament_the_text(bytes(filename,'utf-16-le')))
     sleep(0.1)
-    payload = fragment_batches_into_packets(compressed_bytes_batches, 1000) # compress every 1000 bytes
     
-    ok = tx(payload)
-
-    #encendre leds en funció del valor de "ok"
-    if ok:
-        print("OK")
-#        #encendre un led
-    elif not ok:
-        print("NOT OK")
-#        #encendre un altre led
+    for compressed_bytes_batch in compressed_bytes_batches:
+        payload = fragment_batches_into_packets(compressed_bytes_batch)
+        ok = tx(payload)
+        #encendre leds en funció del valor de "ok"
+        if ok:
+            print("OK")
+    #        #encendre un led
+        elif not ok:
+            print("NOT OK")
+    #        #encendre un altre led
 
     radioPowerOff()
     led_manager(L2,On)

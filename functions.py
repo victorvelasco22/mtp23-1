@@ -72,6 +72,7 @@ def rx():
 
 def upload_to_usb(filename):
   path = str(filename,'utf-16-le').split("/")
+  #name = str(filename,'utf-16-le').replace("TX",RX)
   shutil.copy("/home/rpi/textfile/output.txt", "/media/rpi/USB/"+path[-1]+".txt")
   print("Uploaded successfully")
 
@@ -130,6 +131,7 @@ def download_from_usb():
   for file in glob("/media/rpi/USB/*.txt"):
     continue
   shutil.copy(file, "/home/rpi/textfile/file.txt")
+  #filename = file.split("/")[-1]
   print("Downloaded successfully")
   compressed_bytes = compress(open_txt())
   print("Compression successfully")

@@ -73,7 +73,6 @@ def active():
             led_manager(L1,On)
         elif (GPIO.input(SW4)==True and GPIO.input(SW2)==False and GPIO.input(SW3)==True): #Individual Mode Tx
             led_manager(L1,Off)
-            sleep(0.5)
             tx_mode(filename, bytes_compressed)
             led_manager(L1,On)
     

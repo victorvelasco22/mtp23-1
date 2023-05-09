@@ -151,6 +151,9 @@ def tx_mode(filename, compressed_bytes_batches):
     tx(frament_the_text(bytes(filename,'utf-16-le')))
     sleep(0.1)
     
+    tx(int.to_bytes(len(compressed_bytes_batches)))
+    sleep(0.1)
+    
     for compressed_bytes_batch in compressed_bytes_batches:
         payload = fragment_batches_into_packets(compressed_bytes_batch)
         ok = tx(payload)
@@ -185,17 +188,21 @@ def rx_mode():
     filename_bytes = rx()
     print(filename_bytes)
     sleep(0.1)
-    reception = rx()
-
-    #encendre leds en funció del valor de "reception[0]"
-    if reception[0]:
-        print("OK")
-        #encendre un led
-    elif not reception[0]:
-        print("NOT OK")
-        #encendre un altre led
-
-    write(reception[1])
+    
+    number_of_fragments = int.from_bytes(rx())
+    sleep(0.1)
+    
+    for i in range(number_of_fragments):
+        reception = rx()
+        #encendre leds en funció del valor de "reception[0]"
+        if reception[0]:
+            print("OK")
+            #encendre un led
+        elif not reception[0]:
+            print("NOT OK")
+            #encendre un altre led
+        write(reception[1])
+        sleep(0.1)
 
     radioPowerOff()
     led_manager(L2,On)

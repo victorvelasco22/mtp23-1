@@ -62,7 +62,7 @@ def rx():
                 elif expected_seq_num == 0x01:
                     expected_seq_num = 0x00
                 received_packets += 1
-                #print(received_packets)
+                print(received_packets)
                 #print(byte_txt)
     print(f"Transmission ok, total received packets: {received_packets}")
   except KeyboardInterrupt:
@@ -101,7 +101,7 @@ def tx(payload):
           packets_sent_failed += 1
       packets_sent_ok += 1
       #Changing sequence number
-      #print(packets_sent_ok)
+      print(packets_sent_ok)
       if seq_num == 0x00:
         seq_num = 0x01
       elif seq_num == 0x01:

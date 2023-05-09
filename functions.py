@@ -36,6 +36,7 @@ def radioSetupTX():
   radio.setPayloadSize(struct.calcsize("<B31s"))
   radio.print_pretty_details()
   radio.setDataRate(rf24.RF24_1MBPS)
+  radio.setAutoAck(True)
 
 def radioPowerOff():
   radio.power = False

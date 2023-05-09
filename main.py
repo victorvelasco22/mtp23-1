@@ -5,6 +5,8 @@ from time import sleep
 import os
 
 radio = RF24(22, 0)
+filename = ''
+filename_bytes = b''
 
 GPIO.setmode(GPIO.BCM) #establim com es fara referencia als pins de la RPi
 

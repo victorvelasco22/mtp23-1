@@ -143,7 +143,7 @@ def tx_mode(filename, bytes_compressed):
     #radio_setup(12345, False)
     radioSetupTX()
     
-    #ok = tx(frament_the_text(bytes(filename,'utf-16-le')))
+    #tx(frament_the_text(bytes(filename,'utf-16-le')))
     #sleep(0.1)
     payload = frament_the_text(bytes_compressed)
     

@@ -140,7 +140,7 @@ def download_from_usb():
   filename = file.split("/")[-1]
   print(filename)
   print("Downloaded successfully")
-  compressed_bytes_batches = fragment_and_compress(open_txt())
+  compressed_bytes_batches = fragment_and_compress(open_txt(), 1000) # compress every 1000 batches
   print("Compression successfully")
   return filename, compressed_bytes_batches
   
@@ -173,6 +173,7 @@ def fragment_batches_into_packets(batches):
   all_bytes = b''.join(batches)
   for i in range(0,len(all_bytes), 31):
     payload.append(all_bytes[i:i+31])
+  print("Number of packets: " + str(len(payload)))
   return payload
 
 
@@ -183,11 +184,9 @@ def compress(text_to_tx):
 def fragment_and_compress(data: bytes, chunk_size: int) -> list:
     chunks = []
     for i in range(0, len(data), chunk_size):
-        chunks.append(data[i:i+chunk_size])
-    batches_compressed = []
-    for chunk in chunks:
-        batches_compressed.append(compress(chunk))
-    return batches_compressed
+        chunks.append(compress(data[i:i+chunk_size]))
+    print("Number of compression batches: " + str(len(chunks)))
+    return chunks
 
 def decompress(compressed_txt):
     return bz2.decompress(compressed_txt)

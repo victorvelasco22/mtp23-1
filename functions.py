@@ -121,7 +121,7 @@ def tx(payload):
       print(f"Total packets failed: {packets_sent_failed}")
     else:
       print("Transmission failed")
-    radio.power = False
+    #radio.power = False
     return ok
   except KeyboardInterrupt:
     print("powering down radio and exiting.")

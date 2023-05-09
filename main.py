@@ -53,12 +53,12 @@ GPIO.output(L5, GPIO.LOW)
 
 #definicio dels diferents estats necesaris per a fer el main.
 def active():
-    bytes_compressed = b''
+    compressed_bytes_batches = []
     while (GPIO.input(SW1)==True):
         sleep(0.2)
         if (GPIO.input(SW5)==True): #Read file from USB
             led_manager(L1,Off)
-            filename, bytes_compressed = read_usb()
+            filename, compressed_bytes_batches = read_usb()
             led_manager(L1,On)
         elif (GPIO.input(SW6)==True): #Write file to USB
             led_manager(L1,Off)
@@ -75,7 +75,7 @@ def active():
             led_manager(L1,On)
         elif (GPIO.input(SW4)==True and GPIO.input(SW2)==False and GPIO.input(SW3)==True): #Individual Mode Tx
             led_manager(L1,Off)
-            tx_mode(filename, bytes_compressed)
+            tx_mode(filename, compressed_bytes_batches)
             led_manager(L1,On)
         elif (GPIO.input(SW7)==True):
             os.system('sudo reboot')
@@ -91,7 +91,7 @@ def read_usb():
         os.system('sudo mount /dev/sdc1 /media/rpi/USB')
     elif os.path.exists('/dev/sdd1'):
         os.system('sudo mount /dev/sdd1 /media/rpi/USB')
-    filename, bytes_compressed = download_from_usb()
+    filename, compressed_bytes_batches = download_from_usb()
     led_manager(L2,On)
     os.system('sudo umount /media/rpi/USB')
     while (GPIO.input(SW5)==True):
@@ -99,7 +99,7 @@ def read_usb():
         continue
     led_manager(L4,Off)
     led_manager(L2,Off)
-    return filename, bytes_compressed
+    return filename, compressed_bytes_batches
     
 
 def write_usb():
@@ -137,7 +137,7 @@ def network_mode():
     led_manager(L3,Off)
     led_manager(L5,Off)
 
-def tx_mode(filename, bytes_compressed):
+def tx_mode(filename, compressed_bytes_batches):
     led_manager(L3,On)
     #AQUI cridar les funcions necesaries per a executar el tx mode
     #radio = RF24(22, 0)
@@ -150,7 +150,7 @@ def tx_mode(filename, bytes_compressed):
     
     tx(frament_the_text(bytes(filename,'utf-16-le')))
     sleep(0.1)
-    payload = frament_the_text(bytes_compressed)
+    payload = fragment_batches_into_packets(compressed_bytes_batches, 1000) # compress every 1000 bytes
     
     ok = tx(payload)
 

@@ -24,6 +24,7 @@ def radioSetupRX():
   radio.listen = True
   radio.print_pretty_details()
   radio.setDataRate(rf24.RF24_1MBPS)
+  radio.setAutoAck(True)
 
 def radioSetupTX():
   if not radio.begin():

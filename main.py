@@ -109,8 +109,7 @@ def write_usb():
     elif os.path.exists('/dev/sdd1'):
         os.system('sudo mount /dev/sdd1 /media/rpi/USB')
     #AQUI cridar les funcions necesaries per a escriure al usb
-    #upload_to_usb(filename_bytes[1])
-    upload_to_usb()
+    upload_to_usb(filename_bytes[1])
     led_manager(L2,On)
     os.system('sudo umount /media/rpi/USB')
     while (GPIO.input(SW6)==True):
@@ -144,8 +143,8 @@ def tx_mode(filename, bytes_compressed):
     #radio_setup(12345, False)
     radioSetupTX()
     
-    #tx(frament_the_text(bytes(filename,'utf-16-le')))
-    #sleep(0.1)
+    tx(frament_the_text(bytes(filename,'utf-16-le')))
+    sleep(0.1)
     payload = frament_the_text(bytes_compressed)
     
     ok = tx(payload)
@@ -177,8 +176,8 @@ def rx_mode():
     #radio_setup(12345, True)
     radioSetupRX()
     
-    #filename_bytes = rx()
-    #sleep(0.1)
+    filename_bytes = rx()
+    sleep(0.1)
     reception = rx()
 
     #encendre leds en funció del valor de "reception[0]"

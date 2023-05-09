@@ -85,13 +85,15 @@ def upload_to_usb(filename):
 def write(byte_txt):
   try:
       decompressed_bytes = decompress(byte_txt)
+      #with open("/media/rpi/USB/output.txt", mode="wb") as fichero:
+      with open("/home/rpi/textfile/output.txt", mode="ab") as fichero:
+        fichero.write(decompressed_bytes)
+      fichero.close()
     except:
       decompressed_bytes = None
       print("Error: Failed to decompress the batch.")
-  #with open("/media/rpi/USB/output.txt", mode="wb") as fichero:
-  with open("/home/rpi/textfile/output.txt", mode="ab") as fichero:
-      fichero.write(decompressed_bytes)
-  fichero.close()
+  
+  
 
 def tx(payload):
   total_packets_sent = 0

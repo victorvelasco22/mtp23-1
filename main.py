@@ -77,7 +77,7 @@ def active():
             led_manager(L1,Off)
             tx_mode(filename, bytes_compressed)
             led_manager(L1,On)
-        elif (GPIO.input(SW7)==True)
+        elif (GPIO.input(SW7)==True):
             os.system('sudo reboot')
     
 def read_usb():

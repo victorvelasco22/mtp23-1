@@ -138,6 +138,7 @@ def download_from_usb():
     continue
   shutil.copy(file, "/home/rpi/textfile/file.txt")
   filename = file.split("/")[-1]
+  print(filename)
   print("Downloaded successfully")
   compressed_bytes = compress(open_txt())
   print("Compression successfully")

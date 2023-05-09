@@ -6,7 +6,7 @@ import os
 
 radio = RF24(22, 0)
 filename = ''
-filename_bytes = (False, b'')
+#filename_bytes = (False, b'')
 
 GPIO.setmode(GPIO.BCM) #establim com es fara referencia als pins de la RPi
 
@@ -169,6 +169,7 @@ def tx_mode(filename, bytes_compressed):
     led_manager(L3,Off)
         
 def rx_mode(): 
+    global filename_bytes
     led_manager(L3,On)
     #AQUI cridar les funcions necesaries per a executar el rx mode
     #radio = RF24(22, 0)

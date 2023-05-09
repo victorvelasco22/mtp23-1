@@ -72,11 +72,11 @@ def rx():
     radio.power = False
   return eof, byte_txt
 
-def upload_to_usb():
+def upload_to_usb(filename):
   #path = str(filename,'utf-16-le').split("/")
-  #name = str(filename,'utf-16-le').replace("TX",RX)
-  shutil.copy("/home/rpi/textfile/output.txt", "/media/rpi/USB/output.txt")
-  #shutil.copy("/home/rpi/textfile/output.txt", "/media/rpi/USB/"+name)
+  name = str(filename,'utf-16-le').replace("TX",RX)
+  #shutil.copy("/home/rpi/textfile/output.txt", "/media/rpi/USB/output.txt")
+  shutil.copy("/home/rpi/textfile/output.txt", "/media/rpi/USB/"+name)
   print("Uploaded successfully")
 
 def write(byte_txt):

@@ -140,9 +140,9 @@ def download_from_usb():
   filename = file.split("/")[-1]
   print(filename)
   print("Downloaded successfully")
-  compressed_bytes = compress(open_txt())
+  compressed_bytes_batches = fragment_and_compress(open_txt())
   print("Compression successfully")
-  return filename, compressed_bytes
+  return filename, compressed_bytes_batches
   
 #CHANGE FILE PATH/NAME
 #read the utf-16-le file
@@ -168,6 +168,14 @@ def frament_the_text(text):
     payload.append(text[i:i+31])
   return payload
 
+def fragment_batches_into_packets(batches):
+  payload = list()
+  all_bytes = b''.join(batches)
+  for i in range(0,len(all_bytes), 31):
+    payload.append(all_bytes[i:i+31])
+  return payload
+
+
 def compress(text_to_tx):
   # preset = 9 -> max compression, but slowest
   return bz2.compress(text_to_tx, compresslevel=9)
@@ -179,7 +187,7 @@ def fragment_and_compress(data: bytes, chunk_size: int) -> list:
     batches_compressed = []
     for chunk in chunks:
         batches_compressed.append(compress(chunk))
-    return chunks
+    return batches_compressed
 
 def decompress(compressed_txt):
     return bz2.decompress(compressed_txt)

@@ -172,6 +172,15 @@ def compress(text_to_tx):
   # preset = 9 -> max compression, but slowest
   return bz2.compress(text_to_tx, compresslevel=9)
 
+def fragment_and_compress(data: bytes, chunk_size: int) -> list:
+    chunks = []
+    for i in range(0, len(data), chunk_size):
+        chunks.append(data[i:i+chunk_size])
+    batches_compressed = []
+    for chunk in chunks:
+        batches_compressed.append(compress(chunk))
+    return chunks
+
 def decompress(compressed_txt):
     return bz2.decompress(compressed_txt)
 

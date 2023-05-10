@@ -225,11 +225,11 @@ L4=24
 L5=23
 
 #establim els pins conectats als leds com a outputs
-GPIO.setup(L1, GPIO.OUT)
-GPIO.setup(L2, GPIO.OUT)
-GPIO.setup(L3, GPIO.OUT)
-GPIO.setup(L4, GPIO.OUT)
-GPIO.setup(L5, GPIO.OUT)
+#GPIO.setup(L1, GPIO.OUT)
+#GPIO.setup(L2, GPIO.OUT)
+#GPIO.setup(L3, GPIO.OUT)
+#GPIO.setup(L4, GPIO.OUT)
+#GPIO.setup(L5, GPIO.OUT)
 
 def led_manager(led, estat): #funció per a operar els leds, es donen com a inputs el led i l'estat del led (On/Off) per a fer el funcionament d'aquests
   if(estat):

@@ -92,8 +92,8 @@ def read_usb():
     elif os.path.exists('/dev/sdd1'):
         os.system('sudo mount /dev/sdd1 /media/rpi/USB')
     filename, bytes_compressed = download_from_usb()
-    led_manager(L2,On)
     os.system('sudo umount /media/rpi/USB')
+    led_manager(L2,On)
     while (GPIO.input(SW5)==True):
         sleep(0.2)
         continue
@@ -115,8 +115,8 @@ def write_usb():
     #AQUI cridar les funcions necesaries per a escriure al usb
     print(filename_bytes)
     upload_to_usb(filename_bytes[1])
-    led_manager(L2,On)
     os.system('sudo umount /media/rpi/USB')
+    led_manager(L2,On)
     while (GPIO.input(SW6)==True):
         sleep(0.2)
         continue
@@ -124,7 +124,6 @@ def write_usb():
     led_manager(L2,Off)
 
 def network_mode():
-    
     led_manager(L3,On)
     led_manager(L5,On)
     #AQUI cridar les funcions necesaries per a executar el network mode
@@ -183,7 +182,7 @@ def rx_mode():
     radioSetupRX()
     
     filename_bytes = rx()
-    print(filename_bytes)
+
     sleep(0.1)
     reception = rx()
 

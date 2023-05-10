@@ -90,7 +90,7 @@ def write(byte_txt):
       with open("/home/rpi/textfile/output.txt", mode="ab") as fichero:
         fichero.write(decompressed_bytes)
       fichero.close()
-    except:
+  except:
       decompressed_bytes = None
       print("Error: Failed to decompress the batch.")
   
